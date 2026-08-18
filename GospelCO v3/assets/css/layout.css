@@ -1,0 +1,31 @@
+/* ==========================================================
+   LAYOUT UTILITIES
+========================================================== */
+
+.container{
+    width:min(92%,var(--container));
+    margin-inline:auto;
+    padding-inline:12px;
+}
+
+.container-small{
+    width:min(92%,900px);
+    margin-inline:auto;
+    padding-inline:12px;
+}
+
+.grid{display:grid;gap:40px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:60px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:35px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;}
+.flex{display:flex;}
+.flex-between{display:flex;justify-content:space-between;align-items:center;}
+.flex-center{display:flex;justify-content:center;align-items:center;}
+.text-center{text-align:center;}
+
+.section{padding:var(--space-section) 0;}
+.section-small{padding:76px 0;}
+.section-large{padding:clamp(110px,12vw,160px) 0;}
+
+.mt-1{margin-top:1rem;}.mt-2{margin-top:2rem;}.mt-3{margin-top:3rem;}
+.mb-1{margin-bottom:1rem;}.mb-2{margin-bottom:2rem;}.mb-3{margin-bottom:3rem;}

@@ -1,0 +1,150 @@
+/* ==========================================================
+   MINIMAL MOTION ONLY
+   Keep motion quiet. The work should speak first.
+========================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+
+.reveal.show{opacity:1;transform:none;}
+
+@media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+}
+
+
+/* ==========================================================
+   GOSPELCO AMBIENT MOTION
+   Use only for atmosphere and interaction feedback.
+========================================================== */
+@media (prefers-reduced-motion:no-preference){
+    .service-card:hover .service-image img,
+    .about-visual:hover img{
+        transform:scale(1.035);
+    }
+
+    .service-card:hover{
+        border-color:rgba(167,139,250,.35);
+        box-shadow:0 16px 42px rgba(0,0,0,.28),0 0 28px rgba(120,0,216,.08);
+    }
+
+    .counter h2{
+        animation:counterBreath 3.8s ease-in-out infinite;
+    }
+
+    @keyframes counterBreath{
+        0%,100%{text-shadow:0 0 14px rgba(98,243,154,.12);}
+        50%{text-shadow:0 0 24px rgba(98,243,154,.25);}
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .service-card:hover .service-image img,
+    .about-visual:hover img{
+        transform:none;
+    }
+}
+
+
+/* ==========================================================
+   SUBTLE EDGE-LOAD GLOW
+   A purple light travels around selected boxes on hover.
+   It is intentionally slow and quiet.
+========================================================== */
+@media (prefers-reduced-motion:no-preference){
+    .tech-card,
+    .service-card,
+    .project-card,
+    .why-card,
+    .testimonial-card,
+    .counter{
+        position:relative;
+        isolation:isolate;
+    }
+
+    .tech-card::before,
+    .service-card::before,
+    .project-card::before,
+    .why-card::before,
+    .testimonial-card::before,
+    .counter::before{
+        content:"";
+        position:absolute;
+        inset:-1px;
+        z-index:5;
+        pointer-events:none;
+        border-radius:inherit;
+        padding:1px;
+        background:conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 245deg,
+            rgba(120,0,216,0) 270deg,
+            rgba(167,139,250,.95) 305deg,
+            rgba(120,0,216,.18) 330deg,
+            transparent 360deg
+        );
+        -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+        -webkit-mask-composite:xor;
+        mask-composite:exclude;
+        opacity:0;
+        transition:opacity .35s ease;
+    }
+
+    .tech-card:hover::before,
+    .service-card:hover::before,
+    .project-card:hover::before,
+    .why-card:hover::before,
+    .testimonial-card:hover::before,
+    .counter:hover::before,
+    .tech-card.is-active::before,
+    .service-card.is-active::before,
+    .project-card.is-active::before,
+    .why-card.is-active::before,
+    .testimonial-card.is-active::before,
+    .counter.is-active::before{
+        opacity:1;
+        animation:edgeOrbit 2.8s linear infinite;
+    }
+
+    @keyframes edgeOrbit{
+        to{background:conic-gradient(
+            from 360deg,
+            transparent 0deg,
+            transparent 245deg,
+            rgba(120,0,216,0) 270deg,
+            rgba(167,139,250,.95) 305deg,
+            rgba(120,0,216,.18) 330deg,
+            transparent 360deg
+        );}
+    }
+
+    .counter h2.is-counting{
+        transform:translateY(-2px) scale(1.025);
+        text-shadow:0 0 16px rgba(98,243,154,.28),0 0 34px rgba(98,243,154,.12);
+    }
+
+    .counter h2.count-complete{
+        animation:counterFinish .75s ease-out;
+    }
+
+    @keyframes counterFinish{
+        0%{transform:scale(1.08);text-shadow:0 0 30px rgba(98,243,154,.4);}
+        55%{transform:scale(1.02);text-shadow:0 0 22px rgba(98,243,154,.3);}
+        100%{transform:scale(1);text-shadow:0 0 18px rgba(98,243,154,.2);}
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .tech-card::before,
+    .service-card::before,
+    .project-card::before,
+    .why-card::before,
+    .testimonial-card::before,
+    .counter::before{
+        display:none;
+    }
+}

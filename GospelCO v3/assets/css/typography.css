@@ -1,0 +1,58 @@
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,h2,h3,h4,h5,h6{
+    font-family:"Cormorant Garamond",serif;
+    color:var(--text-strong);
+    font-weight:500;
+    line-height:1.08;
+}
+
+p{color:var(--text);}
+
+.text-gradient{
+    background:linear-gradient(90deg,var(--primary),var(--primary-light));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.text-center{text-align:center;}
+.text-white{color:var(--white);}
+
+
+/* ==========================================================
+   GOSPELCO EDITORIAL HEADING ACCENTS
+   Use sparingly so the italic colour remains a signature.
+========================================================== */
+.heading-accent{
+    font-style:italic;
+    font-weight:500;
+    color:var(--primary-light);
+}
+
+.heading-accent.green{
+    color:var(--accent-green);
+}
+
+.heading-underline{
+    position:relative;
+    display:inline-block;
+}
+
+.heading-underline::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-4px;
+    height:2px;
+    background:var(--accent-green);
+    box-shadow:0 0 10px rgba(98,243,154,.25);
+}
+
+
+.emphases {
+    color: var(--primary-light);
+}

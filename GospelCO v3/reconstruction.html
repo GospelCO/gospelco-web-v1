@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This GospelCO service page is being rebuilt. Explore our Pinterest work while the new experience is prepared.">
+    <title>Page Under Reconstruction | GospelCO</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/utilities/animations.css">
+    <style>
+        .rebuild-page{min-height:100svh;display:grid;place-items:center;padding:48px 20px;overflow:hidden;}
+        .rebuild-wrap{width:min(100%,900px);text-align:center;}
+        .rebuild-logo{display:inline-block;margin-bottom:34px;}
+        .rebuild-logo img{width:min(190px,48vw);height:auto;margin:auto;}
+        .rebuild-card{
+            position:relative;
+            padding:clamp(34px,7vw,76px) clamp(22px,6vw,70px);
+            border:1px solid var(--border);
+            border-radius:var(--radius-large);
+            background:
+                radial-gradient(circle at 50% 0,rgba(120,0,216,.18),transparent 42%),
+                var(--bg-secondary);
+            box-shadow:var(--shadow-large);
+            overflow:hidden;
+        }
+        .rebuild-card::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+            background-size:42px 42px;
+            opacity:.5;
+        }
+        .rebuild-content{position:relative;z-index:1;}
+        .rebuild-tag{display:inline-flex;padding:8px 14px;border:1px solid rgba(120,0,216,.35);border-radius:999px;color:var(--primary-light);background:rgba(120,0,216,.09);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;}
+        .rebuild-card h1{margin:20px auto 16px;max-width:760px;font-size:clamp(2.5rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;color:var(--white);}
+        .rebuild-card p{max-width:650px;margin:0 auto;color:var(--text-soft);font-size:1rem;line-height:1.8;}
+        .rebuild-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px;}
+        .countdown-wrap{margin:42px auto 0;}
+        .countdown-label{margin-bottom:16px;color:var(--text-soft);font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;}
+        .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:650px;margin:auto;}
+        .time-box{padding:18px 10px;border:1px solid var(--border);border-radius:var(--radius-medium);background:rgba(255,255,255,.025);}
+        .time-box strong{display:block;font-family:"DM Sans",sans-serif;font-size:clamp(1.8rem,5vw,3rem);line-height:1;color:var(--white);}
+        .time-box span{display:block;margin-top:8px;font-size:.72rem;color:var(--text-soft);text-transform:uppercase;letter-spacing:.08em;}
+        .rebuild-note{margin-top:28px;font-size:.8rem!important;}
+        .rebuild-home{display:inline-block;margin-top:24px;color:var(--primary-light);font-size:.85rem;}
+        @media(max-width:520px){
+            .rebuild-page{padding:26px 14px;}
+            .countdown{grid-template-columns:repeat(2,1fr);}
+            .rebuild-actions a{width:100%;}
+        }
+    </style>
+</head>
+<body>
+<main class="rebuild-page">
+    <div class="rebuild-wrap">
+        <a href="index.html" class="rebuild-logo" aria-label="GospelCO home">
+            <img src="assets/images/logo/logo-white.svg" alt="GospelCO">
+        </a>
+
+        <section class="rebuild-card" data-countdown data-days="30">
+            <div class="rebuild-content">
+                <span class="rebuild-tag">New experience in progress</span>
+                <h1>We're rebuilding this page.</h1>
+                <p>
+                    This part of GospelCO is being redesigned and rebuilt into a better experience.
+                    The new page is coming soon. Until then, explore our latest visual work and ideas on Pinterest.
+                </p>
+
+                <div class="rebuild-actions">
+                    <a href="https://www.pinterest.com/gospelco_/" class="btn btn-primary pinterest-link" data-placeholder-social="pinterest">
+                        Visit Pinterest
+                    </a>
+                    <a href="index.html" class="btn btn-secondary">
+                        Back to Home
+                    </a>
+                </div>
+
+                <div class="countdown-wrap">
+                    <p class="countdown-label" data-countdown-label>Countdown to page relaunch</p>
+                    <div class="countdown" aria-label="Countdown to page relaunch">
+                        <div class="time-box"><strong data-days>30</strong><span>Days</span></div>
+                        <div class="time-box"><strong data-hours>00</strong><span>Hours</span></div>
+                        <div class="time-box"><strong data-minutes>00</strong><span>Minutes</span></div>
+                        <div class="time-box"><strong data-seconds>00</strong><span>Seconds</span></div>
+                    </div>
+                </div>
+
+                <p class="rebuild-note">
+                    The countdown is a target, not a promise. The page can be relaunched earlier whenever the new experience is ready.
+                </p>
+                <a href="index.html" class="rebuild-home">← Return to GospelCO</a>
+            </div>
+        </section>
+    </div>
+</main>
+    <script src="assets/js/main.js"></script>
+    <script>
+    /*GospelCO Pinterest profile. */
+    document.querySelectorAll(".pinterest-link,[data-placeholder-social='pinterest']").forEach(link=>{
+        link.addEventListener("click",event=>{
+            if(link.getAttribute("href")==="https://www.pinterest.com/gospelco_/"){
+                event.preventDefault();
+                alert("Add the GospelCO Pinterest URL in index.html / reconstruction.html first.");
+            }
+        });
+    });
+    </script>
+</body>
+</html>

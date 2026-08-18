@@ -1,0 +1,77 @@
+/* ==========================================================
+   GOSPELCO PORTFOLIO V2 — DESIGN TOKENS
+   Edit this file first when changing the visual identity.
+========================================================== */
+
+:root{
+    /* Brand */
+    --primary:#7800D8;
+    --primary-light:#e100ff;
+    --primary-dark:#6D28D9;
+    --accent-green:#00ff37;
+    --primary-hover: rgb(15, 0, 24);
+    --purple-bright:#c300ff;
+
+    /* Surfaces */
+    --bg-primary:#111113;
+    --bg-secondary:#18181b0e;
+    --bg-tertiary:#202024;
+    --bg-elevated:#25252B;
+
+    /* Text */
+    --white:#F7F7F8;
+    --black:#111113;
+    --text:#C4C4CC;
+    --text-soft:#94949F;
+    --text-strong:#FFFFFF;
+
+    /* Borders */
+    --border:rgba(255,255,255,.09);
+    --border-strong:rgba(255,255,255,.16);
+
+    /* Shadows */
+    --shadow-small:0 8px 24px rgba(0,0,0,.16);
+    --shadow-medium:0 16px 42px rgba(0,0,0,.24);
+    --shadow-large:0 28px 70px rgba(0,0,0,.30);
+    --shadow-purple:0 12px 32px rgba(120,0,216,.22);
+
+    /* Radius */
+    --radius-small:10px;
+    --radius-medium:14px;
+    --radius-large:16px;
+    --radius-round:999px;
+
+    /* Typography */
+    --fs-small:.88rem;
+    --fs-body:1rem;
+    --fs-h5:1.2rem;
+    --fs-h4:1.45rem;
+    --fs-h3:1.9rem;
+    --fs-h2:clamp(2rem,5vw,3.5rem);
+    --fs-h1:clamp(3.2rem,7vw,6.2rem);
+
+    --light:300;
+    --regular:400;
+    --medium:500;
+    --bold:700;
+
+    /* Layout */
+    --container:1280px;
+    --space-xs:.5rem;
+    --space-sm:1rem;
+    --space-md:2rem;
+    --space-lg:4rem;
+    --space-xl:7rem;
+    --space-section:clamp(76px,9vw,120px);
+
+    /* Motion */
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --fast:.2s;
+    --medium-speed:.35s;
+    --slow:.55s;
+
+    /* Z-index */
+    --header:1000;
+    --overlay:1100;
+    --modal:2000;
+}

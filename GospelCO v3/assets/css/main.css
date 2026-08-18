@@ -1,0 +1,38 @@
+/* ==========================================================
+   GLOBAL PAGE STYLES
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+body{background:var(--bg-primary);color:var(--text);}
+
+main{position:relative;isolation:isolate;}
+
+.section-heading{
+    width:min(100%,760px);
+    margin-inline:auto;
+    margin-top: 30px;
+    margin-bottom: 70px;
+    text-align:center;
+}
+
+.section-heading h2{
+    margin:16px 0 14px;
+    font-size:var(--fs-h2);
+    letter-spacing:-.02em;
+}
+
+.section-heading p{font-size:1rem;line-height:1.85;color:var(--text-soft);}
+
+.scroll-progress{
+    position:fixed;
+    inset:0 auto auto 0;
+    width:0;
+    height:3px;
+    background:linear-gradient(90deg,var(--primary),var(--accent-green));
+    z-index:2001;
+}
+
+/* Accessible fallback for elements that use the JS reveal class. */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.reveal.show{opacity:1;transform:none;}
