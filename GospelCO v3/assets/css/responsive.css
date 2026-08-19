@@ -207,7 +207,7 @@ html,body{max-width:100%;overflow-x:hidden;}
 
 @media(max-width:640px){
     .nav-socials{display:none;}
-    .logo img {width: 145px;}
+    .logo img {width: 110px;}
 
     /* 1. Reduce top section padding so content moves up slightly */
     .hero {
@@ -343,7 +343,7 @@ html,body{max-width:100%;overflow-x:hidden;}
 }
 
 @media(max-width:360px){
-    .logo img {width: 145px;}
+    .logo img {width: 100px;}
     .hero h1{font-size:clamp(2.35rem,12vw,3.2rem);}
     .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .stat{padding:10px;}
