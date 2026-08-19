@@ -216,8 +216,8 @@ html,body{max-width:100%;overflow-x:hidden;}
 
 
     /* The styled/italicized text span (.empaheses) */
-    .hero h1 span.empaheses,
-    span.empaheses {
+    .hero h1 span.emphasess,
+    span.emphasess {
         display: inline-block;
         font-size: inherit;         /* Force it to scale seamlessly with the main h1 */
         line-height: inherit;
@@ -352,8 +352,8 @@ html,body{max-width:100%;overflow-x:hidden;}
     .float-btn-text{font-size:.78rem;}
    
     /* The styled/italicized text span (.empaheses) */
-    .hero h1 span.empaheses,
-    span.empaheses {
+    .hero h1 span.emphasess,
+    span.emphasess {
         display: inline-block;
         font-size: inherit;         /* Force it to scale seamlessly with the main h1 */
         line-height: inherit;
