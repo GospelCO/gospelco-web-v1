@@ -214,6 +214,25 @@ html,body{max-width:100%;overflow-x:hidden;}
         padding: 90px 16px 40px; 
     }
 
+
+    /* The styled/italicized text span (.empaheses) */
+    .hero h1 span.empaheses,
+    span.empaheses {
+        display: inline-block;
+        font-size: inherit;         /* Force it to scale seamlessly with the main h1 */
+        line-height: inherit;
+        vertical-align: baseline;
+    }
+
+    /* The underlined/outlined text span (.hl) */
+    .hero h1 span.hl,
+    span.hl {
+        display: inline-block;
+        font-size: inherit;         /* Keep exact size parity with main heading */
+        line-height: inherit;
+        vertical-align: baseline;
+    }
+   
     /* 2. Scale down the badge/tagline above the main header */
     .hero-tag, 
     .hero span {
@@ -331,6 +350,24 @@ html,body{max-width:100%;overflow-x:hidden;}
     .stat:not(:last-child)::after{display:none;}
     .tech-grid{grid-template-columns:1fr 1fr;}
     .float-btn-text{font-size:.78rem;}
+   
+    /* The styled/italicized text span (.empaheses) */
+    .hero h1 span.empaheses,
+    span.empaheses {
+        display: inline-block;
+        font-size: inherit;         /* Force it to scale seamlessly with the main h1 */
+        line-height: inherit;
+        vertical-align: baseline;
+    }
+
+    /* The underlined/outlined text span (.hl) */
+    .hero h1 span.hl,
+    span.hl {
+        display: inline-block;
+        font-size: inherit;         /* Keep exact size parity with main heading */
+        line-height: inherit;
+        vertical-align: baseline;
+    }
 }
 
 
