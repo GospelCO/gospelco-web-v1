@@ -74,7 +74,7 @@
                 </p>
 
                 <div class="rebuild-actions">
-                    <a href="https://www.pinterest.com/gospelco_/" class="btn btn-primary pinterest-link" data-placeholder-social="pinterest">
+                    <a href="https://www.pinterest.com/gospelco_/_created/" class="btn btn-primary pinterest-link" data-placeholder-social="pinterest">
                         Visit Pinterest
                     </a>
                     <a href="index.html" class="btn btn-secondary">
@@ -101,16 +101,44 @@
     </div>
 </main>
     <script src="assets/js/main.js"></script>
-    <script>
-    /*GospelCO Pinterest profile. */
-    document.querySelectorAll(".pinterest-link,[data-placeholder-social='pinterest']").forEach(link=>{
-        link.addEventListener("click",event=>{
-            if(link.getAttribute("href")==="https://www.pinterest.com/gospelco_/"){
+    <script src="assets/js/main.js"></script>
+
+<script>
+/* =========================================================
+   GospelCO — Pinterest Link Handler
+   Only show an alert when the Pinterest URL is missing
+   or still using a placeholder.
+   ========================================================= */
+
+document
+    .querySelectorAll(".pinterest-link, [data-placeholder-social='pinterest']")
+    .forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            const pinterestURL = (link.getAttribute("href") || "").trim();
+
+            const isMissing =
+                !pinterestURL ||
+                pinterestURL === "https://www.pinterest.com/gospelco_/_created" ||
+                pinterestURL === "javascript:void(0)" ||
+                pinterestURL.includes("YOUR_PINTEREST") ||
+                pinterestURL.includes("ADD_PINTEREST");
+
+            if (isMissing) {
                 event.preventDefault();
-                alert("Add the GospelCO Pinterest URL in index.html / reconstruction.html first.");
+
+                alert(
+                    "The GospelCO Pinterest link has not been added yet."
+                );
+
+                return;
             }
+
+            /* A real Pinterest URL exists.
+               Let the browser open it normally. */
         });
     });
-    </script>
+</script>
 </body>
 </html>

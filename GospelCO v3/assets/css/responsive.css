@@ -67,7 +67,7 @@
     .timeline{grid-template-columns:1fr;}
     .timeline-item{padding:22px 0;border-top:1px solid var(--border);}
     .project-card,.project-card img{min-height:280px;}
-    .service-image{height:110px;}
+    .service-image{height:100%;}
     .section-heading{margin-bottom:42px;}
     .cta{padding:64px 20px;}
     .footer-top{grid-template-columns:1fr 1fr;gap:30px;padding:56px 0 38px;}
@@ -207,6 +207,61 @@ html,body{max-width:100%;overflow-x:hidden;}
 
 @media(max-width:640px){
     .nav-socials{display:none;}
+    .logo img {width: 145px;}
+
+    /* 1. Reduce top section padding so content moves up slightly */
+    .hero {
+        padding: 90px 16px 40px; 
+    }
+
+    /* 2. Scale down the badge/tagline above the main header */
+    .hero-tag, 
+    .hero span {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+
+    /* 3. Fluid responsive sizing for the main headline */
+    .hero h1 {
+        /* Clamp ensures font dynamically scales between 1.65rem and 2.1rem */
+        font-size: clamp(1.65rem, 6.5vw, 2.1rem) !important;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin-bottom: 12px;
+    }
+
+    /* 4. Tighten the paragraph text */
+    .hero p {
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    /* 5. Keep buttons compact */
+    .hero-buttons {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .hero-buttons a {
+        padding: 10px 16px;
+        font-size: 0.82rem;
+    }
+
+    /* 6. Tighten the hero stats grid */
+    .hero-stats {
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .hero-stats h3 {
+        font-size: 1.2rem;
+    }
+
+    .hero-stats p {
+        font-size: 0.7rem;
+    }
 
     .services,
     .portfolio,
@@ -269,6 +324,7 @@ html,body{max-width:100%;overflow-x:hidden;}
 }
 
 @media(max-width:360px){
+    .logo img {width: 145px;}
     .hero h1{font-size:clamp(2.35rem,12vw,3.2rem);}
     .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .stat{padding:10px;}
