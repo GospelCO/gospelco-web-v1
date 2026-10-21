@@ -130,7 +130,7 @@ function Header() {
   const location = useLocation();
   useEffect(() => setOpen(false), [location.pathname]);
   return <header className="site-header">
-    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><span>G</span>ospelCO<sup>TM</sup></Link>
+    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="public/assets/images/logo/logo-white.svg" alt="GospelCO" className="h-8 w-auto" /></Link>
     <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>
       <span>{open ? "Close" : "Menu"}</span>{open ? <X size={18} /> : <Menu size={18} />}
     </button>
@@ -270,7 +270,7 @@ function ServiceCard({ service, index }) {
     <div className="service-body">
       <span className="service-no">{service.number}{service.featured && <small>FEATURED</small>}</span>
       <h3>{service.name}</h3><p>{service.short}</p>
-      <div className="card-actions"><Link className="text-link" to={service.path}>Learn more <ArrowUpRight size={13}/></Link><button type="button" className="mini-cart" onClick={(event) => addToCart(service.name, service.price, event.currentTarget)}><ShoppingCart size={14}/> Add to cart</button></div>
+      <div className="card-actions"><Link className="text-link" to={service.path}>Learn more <ArrowUpRight size={13}/></Link></div>
       <a className="card-order" href={waUrl(`Hi GospelCO, I want to order ${service.name}`)}>Order via WhatsApp <ArrowUpRight size={13}/></a>
     </div>
   </motion.article>;
@@ -279,7 +279,7 @@ function ServiceCard({ service, index }) {
 function Footer() {
   return <footer className="site-footer"><div className="wrap footer-top">
     <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><span>G</span>ospelCO<sup>TM</sup></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
-    <div><strong>Explore</strong><a href="/#services">Services</a><a href="/#retainer">Monthly retainer</a><Link to="/cart/index.html">Project cart</Link></div>
+    <div><strong>Explore</strong><a href="/#services">Services</a><a href="/#retainer">Monthly retainer</a></div>
     <div><strong>Company</strong><a href="/#about">About GospelCO</a><a href="/studio-policy.html">Studio policy</a><a href="/content-disclaimer.html">Content disclaimer</a><a href="/credits-ai-disclosure.html">Credits & AI disclosure</a><a href="/privacy-policy.html">Privacy policy</a></div>
     <div><strong>Connect</strong><a href="https://www.instagram.com/gospelco.ng/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.pinterest.com/gospelco_/" target="_blank" rel="noopener noreferrer">Pinterest</a><a href={waUrl(ENQUIRY_MESSAGE)}>WhatsApp</a></div>
   </div><div className="wrap footer-bottom"><span>© {new Date().getFullYear()} GospelCO. All rights reserved.</span><span>Designed with purpose. Built for business.</span></div></footer>;
@@ -312,7 +312,7 @@ function ServicePage({ service }) {
       <main className="service-page">
         <section className="hero wrap service-hero">
           <div className="hero-copy" data-reveal><SectionLabel>GospelCO service · {service.number.split("/")[1]?.trim()}</SectionLabel><h1>{service.name} that <em>works for your brand.</em></h1><p className="lead">{service.intro}</p>
-            <div className="actions"><a className="btn btn-primary" href={waUrl(service.needMessage)}>Order via WhatsApp <ArrowUpRight size={14}/></a><a className="btn btn-quiet" href="#pricing">View price <ChevronRight size={14}/></a><Link className="btn btn-quiet" to="/cart/index.html"><ShoppingCart size={14}/> Project cart <span className="cart-count-inline">{cartCount}</span></Link></div>
+            <div className="actions"><a className="btn btn-primary" href={waUrl(service.needMessage)}>Order via WhatsApp <ArrowUpRight size={14}/></a><a className="btn btn-quiet" href="#pricing">View price <ChevronRight size={14}/></a></div>
             <p className="micro-proof"><span className="purple-dot"/> Scope and deadline confirmed before production.</p>
           </div>
           <div className="service-hero-art" data-reveal><div className="art-glow"/><div className="service-image-frame"><img src={service.image} alt={service.imageAlt} fetchPriority="high"/><span className="image-edge-label">GOSPELCO / {service.number.split("/")[0].trim()}</span></div><div className="art-caption"><span>CREATIVE SERVICE</span><span>BUILT AROUND THE BRIEF</span></div></div>
