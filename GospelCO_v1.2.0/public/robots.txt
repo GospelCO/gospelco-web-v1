@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /cart/
-Sitemap: https://gospelco.com.ng/sitemap.xml
