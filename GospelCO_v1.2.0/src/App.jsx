@@ -130,7 +130,7 @@ function Header() {
   const location = useLocation();
   useEffect(() => setOpen(false), [location.pathname]);
   return <header className="site-header">
-    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="public/assets/images/logo/logo-white.svg" alt="GospelCO" className="h-8 w-auto" /></Link>
+    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO" className="h-8 w-auto" /></Link>
     <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>
       <span>{open ? "Close" : "Menu"}</span>{open ? <X size={18} /> : <Menu size={18} />}
     </button>
