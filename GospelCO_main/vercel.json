@@ -9,6 +9,12 @@
       "source": "/services/:slug/index.html",
       "destination": "/services/:slug",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.gospelco.com.ng" }],
+      "destination": "https://gospelco.com.ng/$1",
+      "permanent": true
     }
   ]
 }

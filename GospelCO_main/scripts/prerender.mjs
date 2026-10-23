@@ -31,6 +31,14 @@ for (const route of ROUTES) {
     .replace(
       /<meta property="og:title" content="[^"]*"\s*\/?>/,
       '<meta property="og:title" content="' + escape(route.title) + '" />'
+    )
+    .replace(
+      /<link rel="canonical" href="[^"]*"\s*\/?>/,
+      '<link rel="canonical" href="https://gospelco.com.ng' + route.path + '" />'
+    )
+    .replace(
+      /<meta property="og:url" content="[^"]*"\s*\/?>/,
+      '<meta property="og:url" content="https://gospelco.com.ng' + route.path + '" />'
     );
 
   const outDir = route.path === "/" ? dist : path.join(dist, route.path.replace(/^\//, ""));
