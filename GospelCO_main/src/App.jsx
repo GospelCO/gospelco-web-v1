@@ -166,10 +166,10 @@ function Home() {
       </section>
 
       <section className="brand-trust" aria-labelledby="brand-trust-title">
-        <div className="wrap"><p id="brand-trust-title">Trusted by forward-thinking brands across Nigeria</p><div className="brand-logo-row">
-          {/* Brand placeholder: company1.png — public/assets/images/brands/company1.png */}<div className="brand-logo-box"><img src="/assets/images/brands/company1.png" alt="Brand logo 1" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company1.png</span></div>
-          {/* Brand placeholder: company2.png — public/assets/images/brands/company2.png */}<div className="brand-logo-box"><img src="/assets/images/brands/company2.png" alt="Brand logo 2" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company2.png</span></div>
-          {/* Brand placeholder: company3.png — public/assets/images/brands/company3.png */}<div className="brand-logo-box"><img src="/assets/images/brands/company3.png" alt="Brand logo 3" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company3.png</span></div>
+        <div className="wrap"><p id="brand-trust-title">Brands we've worked with across Nigeria</p><div className="brand-logo-row">
+          {/* Brand placeholder: company1.png — public/assets/images/brands/company1.png */}<div className="brand-logo-box"><img src="/assets/images/logo/highcee_logo.png" alt="Brand logo 1" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company1.png</span></div>
+          {/* Brand placeholder: company2.png — public/assets/images/brands/company2.png */}<div className="brand-logo-box"><img src="/assets/images/logos/Eminent_transparent.png" alt="Brand logo 2" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company2.png</span></div>
+          {/* Brand placeholder: company3.png — public/assets/images/brands/company3.png */}<div className="brand-logo-box"><img src="/assets/images/logo/transparent.png" alt="Brand logo 3" onLoad={(e)=>{e.currentTarget.parentElement.querySelector("span").style.display="none"}} onError={(e)=>{e.currentTarget.style.display="none"}}/><span>company3.png</span></div>
         </div></div>
       </section>
 
