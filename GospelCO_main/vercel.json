@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/services/:slug/index.html",
+      "destination": "/services/:slug",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/services/(.*)",

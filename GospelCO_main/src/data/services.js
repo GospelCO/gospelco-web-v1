@@ -7,7 +7,7 @@ export function waUrl(message = "Hi GospelCO, I want to start a project.") {
 export const services = [
   {
     id: "flyer",
-    path: "/services/graphic-design/index.html",
+    path: "/services/graphic-design",
     image: "/assets/images/services/flyer.jpg",
     imageAlt: "GospelCO graphic design and social campaign work",
     number: "01 / DESIGN",
@@ -31,7 +31,7 @@ export const services = [
   },
   {
     id: "music",
-    path: "/services/music-cover-art/index.html",
+    path: "/services/music-cover-art",
     image: "/assets/images/services/branding.jpg",
     imageAlt: "GospelCO cover art and visual design work",
     number: "02 / MUSIC",
@@ -55,7 +55,7 @@ export const services = [
   },
   {
     id: "ai-video",
-    path: "/services/ai-video-adverts/index.html",
+    path: "/services/ai-video-adverts",
     image: "/assets/images/services/ai.png",
     imageAlt: "AI-assisted video advert concept visual",
     number: "03 / AI VIDEO",
@@ -80,7 +80,7 @@ export const services = [
   },
   {
     id: "video",
-    path: "/services/video-editing/index.html",
+    path: "/services/video-editing",
     image: "/assets/images/services/video.jpg",
     imageAlt: "Short-form video editing creative preview",
     number: "04 / CONTENT",
@@ -104,7 +104,7 @@ export const services = [
   },
   {
     id: "web",
-    path: "/services/web-design/index.html",
+    path: "/services/web-design",
     image: "/assets/images/services/website.jpg",
     imageAlt: "Website design and development preview",
     number: "05 / WEB",
@@ -128,7 +128,7 @@ export const services = [
   },
   {
     id: "strategy",
-    path: "/services/brand-strategy/index.html",
+    path: "/services/brand-strategy",
     image: "/assets/images/services/motion.jpg",
     imageAlt: "Brand strategy and creative direction preview",
     number: "06 / STRATEGY",

@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import {
   ArrowUpRight, BriefcaseBusiness, Check, Compass, Crown, Handshake,
-  Menu, ShieldCheck, TrendingUp, X, Globe, Video, Palette, Sparkles
+  Menu, ShieldCheck, TrendingUp, X, Globe, Video, Palette, Sparkles, ChevronRight
 } from "lucide-react";
 import { services, waUrl } from "./data/services.js";
 
