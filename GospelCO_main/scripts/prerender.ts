@@ -1,18 +1,32 @@
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { render, ROUTES } from "../dist-ssr/entry-server.js";
+import { fileURLToPath, pathToFileURL } from "node:url";
+
+interface Route {
+  path: string;
+  title: string;
+  description: string;
+}
+
+interface ServerRenderModule {
+  render: (url: string) => string;
+  ROUTES: Route[];
+}
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+const serverModule: ServerRenderModule = await import(
+  pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href
+);
+const { render, ROUTES } = serverModule;
 
-const escape = (s) =>
+const escape = (s: string): string =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 let ok = 0;
 for (const route of ROUTES) {
-  let html;
+  let html: string;
   try {
     html = render(route.path);
   } catch (error) {

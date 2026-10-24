@@ -1,10 +1,10 @@
 GOSPELCO SITE — 4 FILE FIX
 
 Why the service pages were broken:
-src/App.jsx used <ChevronRight /> on line 252 but never imported it.
+src/App.tsx used <ChevronRight /> on line 252 but never imported it.
 Every service page crashed to a blank screen. Nothing else was wrong.
 
-FILE 1 — src/App.jsx
+FILE 1 — src/App.tsx
 Replace the lucide-react import block line 5-7 with:
 
 import {
@@ -14,7 +14,7 @@ import {
 
 (the only change is adding ChevronRight)
 
-FILE 2 — src/data/services.js
+FILE 2 — src/data/services.ts
 Every service path must drop the /index.html suffix:
   /services/graphic-design/index.html     -> /services/graphic-design
   /services/music-cover-art/index.html    -> /services/music-cover-art

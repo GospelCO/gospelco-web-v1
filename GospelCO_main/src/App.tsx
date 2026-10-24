@@ -1,43 +1,45 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import {
-  ArrowUpRight, BriefcaseBusiness, Check, Compass, Crown, Handshake,
+  ArrowUpRight, BriefcaseBusiness, Compass, Crown, Handshake,
   Menu, ShieldCheck, TrendingUp, X, Globe, Video, Palette, Sparkles, ChevronRight
 } from "lucide-react";
-import { services, waUrl } from "./data/services.js";
+import type { LucideIcon } from "lucide-react";
+import { services, waUrl, type Service } from "./data/services";
 
 const START_MESSAGE = "Hi GospelCO, I want to book a strategy call.";
-const RETAINER_MESSAGE = "Hi GospelCO, I want to ask about the monthly retainer.";
-const CONSULT_MESSAGE = "Hi GospelCO, I want to book a strategy session.";
 const FINAL_MESSAGE = "Hi GospelCO, let's build a system for my business.";
 const ENQUIRY_MESSAGE = "Hi GospelCO, I'd like to make an enquiry.";
 
-function Doodle({ kind = "shield", className = "" }) {
-  const shared = { strokeWidth: 1.15, "aria-hidden": true };
-  const map = {
-    crown: Crown,
-    shield: ShieldCheck,
-    compass: Compass,
-    briefcase: BriefcaseBusiness,
-    growth: TrendingUp,
-    trending: TrendingUp,
-    handshake: Handshake,
-  };
-  const Icon = map[kind] || ShieldCheck;
+type DoodleKind = "crown" | "shield" | "compass" | "briefcase" | "growth" | "trending" | "handshake";
+
+const DOODLE_ICONS: Record<DoodleKind, LucideIcon> = {
+  crown: Crown,
+  shield: ShieldCheck,
+  compass: Compass,
+  briefcase: BriefcaseBusiness,
+  growth: TrendingUp,
+  trending: TrendingUp,
+  handshake: Handshake,
+};
+
+function Doodle({ kind = "shield", className = "" }: { kind?: DoodleKind; className?: string }) {
+  const Icon = DOODLE_ICONS[kind];
   const reducedMotion = useReducedMotion();
   const animate = !reducedMotion && ["doodle-shield", "doodle-compass", "problem-doodle", "final-doodle"].some((name) => className.includes(name));
-  return <motion.span className={`doodle-motion ${className}`} aria-hidden="true" animate={animate ? { y: [-10, 10, -10], scale: [0.95, 1.05, 0.95] } : undefined} transition={animate ? { duration: 6, ease: "easeInOut", repeat: Infinity } : undefined}><Icon {...shared} className="doodle" /></motion.span>;
+  return <motion.span className={`doodle-motion ${className}`} aria-hidden="true" animate={animate ? { y: [-10, 10, -10], scale: [0.95, 1.05, 0.95] } : undefined} transition={animate ? { duration: 6, ease: "easeInOut", repeat: Infinity } : undefined}><Icon strokeWidth={1.15} aria-hidden="true" className="doodle" /></motion.span>;
 }
 
-function Meta({ title, description }) {
+function Meta({ title, description }: { title: string; description: string }) {
   useEffect(() => {
     document.title = title;
-    let meta = document.querySelector('meta[name="description"]');
+    let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     if (!meta) {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      document.head.appendChild(meta);
+      const createdMeta = document.createElement("meta");
+      createdMeta.name = "description";
+      document.head.appendChild(createdMeta);
+      meta = createdMeta;
     }
     meta.content = description;
   }, [title, description]);
@@ -95,52 +97,16 @@ function Header() {
   </header>;
 }
 
-function SectionLabel({ children }) {
+function SectionLabel({ children }: { children: ReactNode }) {
   return <p className="eyebrow"><span className="eyebrow-dot" />{children}</p>;
-}
-
-function HeroArtwork() {
-  return <div className="hero-art-wrap" data-reveal>
-    <Doodle kind="shield" className="doodle-shield" />
-    <Doodle kind="compass" className="doodle-compass" />
-    <div className="portrait-frame-back" />
-    <div className="hero-art">
-      <div className="art-glow" />
-      <div className="portrait-topline"><span>GOSPELCO / STUDIO</span><span>01—06</span></div>
-      <div className="portrait-photo-wrap">
-        <img className="portrait-photo" src="/assets/images/hero/founder.jpg" alt="Olámide Gospel, founder and creative lead at GospelCO" fetchPriority="high" />
-        <span className="portrait-index">GC°</span>
-      </div>
-      <div className="art-caption"><span>FOUNDER-LED CREATIVE</span><span>IDEAS → IMPACT</span></div>
-    </div>
-    <div className="portrait-chip"><span className="chip-signal" /><span><strong>Strategy first.</strong><small>Design built around the brief.</small></span><Doodle kind="crown" /></div>
-    <span className="portrait-outline" aria-hidden="true" />
-  </div>;
-}
-
-function TypedHeadline() {
-  const phrase = "win customers.";
-  const reducedMotion = useReducedMotion();
-  const [typed, setTyped] = useState(reducedMotion ? phrase : "");
-  useEffect(() => {
-    if (reducedMotion) { setTyped(phrase); return undefined; }
-    let index = 0;
-    const timer = window.setInterval(() => {
-      index += 1;
-      setTyped(phrase.slice(0, index));
-      if (index >= phrase.length) window.clearInterval(timer);
-    }, 80);
-    return () => window.clearInterval(timer);
-  }, [reducedMotion]);
-  return <h1>We help your business <span className="typed-accent">{typed}<span className="typing-cursor" aria-hidden="true">|</span></span></h1>;
 }
 
 function Home() {
   const cases = [
-    { image: "casestudy_image1.png", link: "/services/graphic-design", title: "FMCG Brand Identity & Packaging", metric: "Eminent Bites — End-to-End Corporate Identity & Shelf-Ready Packaging Design.", body: "We developed a complete, premium visual identity system—from logo architecture to commercial packaging—to position a major Nigerian snack brand for market dominance." },
-    { image: "casestudy_image2.png", link: "/services/ai-video-adverts", title: "EdTech Lead Generation Funnel", metric: "350+ Targeted Leads & 10 Student Sign-ups for a Tech Academy.", body: "Engineered a high-impact AI cinematic video trailer combined with a high-conversion registration page to drive high-ticket educational signups." },
-    { image: "casestudy_image3.png", link: "/services/web-design", title: "Nationwide Retail & eCommerce Setup", metric: "Multi-Channel Retail Launch — 12+ Organic Nationwide Sales Without Massive Ad Spend.", body: "Built a high-performance eCommerce website, synced it seamlessly with Google Shopping, and designed high-conversion marketing banners that captured cold customers from different states across Nigeria." },
-    { image: "casestudy_image4.png", link: "/services/web-design", title: "Personal Brand Engine", metric: "Premium Virtual Assistant Platform — High-Trust Global Positioning Portfolio.", body: "Crafted a clean, professional, premium portfolio website built to position an independent service provider for international and premium clientele." }
+    { image: "/assets/images/portfolio/eminent.jpg", link: "/services/graphic-design", title: "FMCG Brand Identity & Packaging", metric: "Eminent Bites — End-to-End Corporate Identity & Shelf-Ready Packaging Design.", body: "We developed a complete, premium visual identity system—from logo architecture to commercial packaging—to position a major Nigerian snack brand for market dominance." },
+    { image: "/assets/images/portfolio/project1.webp", link: "/services/ai-video-adverts", title: "EdTech Lead Generation Funnel", metric: "350+ Targeted Leads & 10 Student Sign-ups for a Tech Academy.", body: "Engineered a high-impact AI cinematic video trailer combined with a high-conversion registration page to drive high-ticket educational signups." },
+    { image: "/assets/images/portfolio/vickytech.jpg", link: "/services/web-design", title: "Nationwide Retail & eCommerce Setup", metric: "Multi-Channel Retail Launch — 12+ Organic Nationwide Sales Without Massive Ad Spend.", body: "Built a high-performance eCommerce website, synced it seamlessly with Google Shopping, and designed high-conversion marketing banners that captured cold customers from different states across Nigeria." },
+    { image: "/assets/images/hero/about-image.jpeg", link: "/services/web-design", title: "Personal Brand Engine", metric: "Premium Virtual Assistant Platform — High-Trust Global Positioning Portfolio.", body: "Crafted a clean, professional, premium portfolio website built to position an independent service provider for international and premium clientele." }
   ];
   return <div className="redesign-site">
     <Meta title="GospelCO | Creative Growth Systems for Businesses" description="GospelCO builds strategic brand identities, websites, video content and digital systems designed to help Nigerian businesses attract customers." />
@@ -151,14 +117,14 @@ function Home() {
         <div className="wrap new-hero-grid">
           <div className="new-hero-copy" data-reveal>
             <SectionLabel>Strategy · Creative · Growth</SectionLabel>
-            <h1>We Don't Just Create Visuals. <span>We Build Systems That Bring You Customers.</span></h1>
+            <h1>We Don't Just Create Visuals. <span>We Build Systems That Bring You <span className="hero-typed-word">Customers.</span></span></h1>
             <p className="new-hero-lead">Every business has unique needs. Whether you need high-conversion eCommerce websites, Google Shopping setups, professional video editing, or cutting-edge AI video ads—we engineer bespoke digital assets that turn Nigerian browsers into paying buyers.</p>
             <div className="actions"><a className="btn btn-primary" href="#case-studies">View Our Case Studies <ArrowUpRight size={16}/></a><a className="btn btn-outline dark-outline" href={waUrl(START_MESSAGE)}>Book a Strategy Call <ArrowUpRight size={15}/></a></div>
             <p className="new-hero-note"><span className="green-dot"/> Built around your goals, audience and business model.</p>
           </div>
           <div className="new-hero-visual" data-reveal aria-label="Hero visual placeholder">
             {/* Hero visual placeholder: hero_visual.png — add the image at public/assets/images/hero/hero_visual.png */}
-            <img src="/assets/images/hero/hero_visual.png" alt="" fetchpriority="high" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} onError={(e)=>{e.currentTarget.style.display="none"}} />
+            <img src="/assets/images/hero/hero_visual.png" alt="" loading="eager" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} onError={(e)=>{e.currentTarget.style.display="none"}} />
             <div className="visual-placeholder-content"><span className="visual-orbit orbit-one"/><span className="visual-orbit orbit-two"/><div className="visual-monogram">G<span>CO</span></div><p>STRATEGY INTO SYSTEMS</p><small>Hero image placeholder · hero_visual.png</small></div>
             <span className="visual-corner visual-corner-tl"/><span className="visual-corner visual-corner-br"/>
           </div>
@@ -178,8 +144,8 @@ function Home() {
         <div className="wrap"><div className="new-section-heading" data-reveal><SectionLabel>Selected projects</SectionLabel><h2>Real Work. <span>Real Numbers.</span> Real Results.</h2><p>Strategic creative work connects brand presentation with the action you want customers to take.</p></div>
           <div className="case-grid">{cases.map((item, i)=><article className="new-case-card" key={item.image} data-reveal>
             <div className="case-image-placeholder" data-image-filename={item.image}>
-              {/* Case-study image placeholder: add the matching file to public/assets/images/casestudies/ when ready. */}
-              <img src={`/assets/images/casestudies/${item.image}`} alt="" loading="lazy" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} onError={(e)=>{e.currentTarget.style.display="none"}} />
+              <img src={item.image} alt="" loading="lazy" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} />
+              <span className="case-image-label">Placeholder visual</span>
             </div>
             <div className="new-case-copy"><span className="case-category">CASE STUDY / 0{i+1}</span><h3>{item.title}</h3><h4>{item.metric}</h4><p>{item.body}</p><div className="capability-actions"><a href={waUrl(`Hi GospelCO, I'd like to discuss a project similar to: ${item.title}.`)} className="text-link"><span className="green-dot" aria-hidden="true"/>Discuss a similar project</a><Link className="text-link" to={item.link}>Learn more <ChevronRight size={13}/></Link></div></div>
           </article>)}</div>
@@ -205,19 +171,9 @@ function Home() {
   </div>;
 }
 
-function ServiceCard({ service, index }) {
-  return <motion.article className={`service-card ${service.featured ? "featured" : ""}`} data-reveal initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.6, delay: index * 0.04 }}>
-    <div className="service-media"><img src={service.image} alt={service.imageAlt} loading="lazy"/><span className="media-number">{String(index + 1).padStart(2, "0")}</span></div>
-    <div className="service-body"><span className="service-no">{service.number}{service.featured && <small>FEATURED</small>}</span><h3>{service.name}</h3><p>{service.short}</p>
-      <div className="card-actions"><Link className="text-link" to={service.path}>Learn more <ArrowUpRight size={13}/></Link></div>
-      <a className="card-order" href={waUrl(`Hi GospelCO, I'd like to discuss ${service.name}.`)}>Discuss on WhatsApp <ArrowUpRight size={13}/></a>
-    </div>
-  </motion.article>;
-}
-
 function Footer() {
   return <footer className="site-footer"><div className="wrap footer-top">
-    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/logo.svg" alt="GospelCO branding company official logo" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
+    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO branding company official logo" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
     <div><strong>Explore</strong><a href="/#capabilities">Capabilities</a><a href="/#case-studies">Case studies</a><a href={waUrl(ENQUIRY_MESSAGE)}>Start a project</a></div>
     <div><strong>Company</strong><a href="/#approach">Our approach</a><a href="/studio-policy.html">Studio policy</a><a href="/content-disclaimer.html">Content disclaimer</a><a href="/credits-ai-disclosure.html">Credits & AI disclosure</a><a href="/privacy-policy.html">Privacy policy</a></div>
     <div><strong>Connect</strong><a href="https://www.instagram.com/gospelco.ng/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.pinterest.com/gospelco_/" target="_blank" rel="noopener noreferrer">Pinterest</a><a href={waUrl(ENQUIRY_MESSAGE)}>WhatsApp</a></div>
@@ -228,11 +184,11 @@ function FloatingWhatsApp() {
   return <a className="floating-wa" href={waUrl(START_MESSAGE)} aria-label="Start a project on WhatsApp"><span className="float-label">Start a project</span><ArrowUpRight size={16} /></a>;
 }
 
-function PageWrap({ children }) {
+function PageWrap({ children }: { children: ReactNode }) {
   return <div className="redesign-page"><Header />{children}<Footer /><FloatingWhatsApp /></div>;
 }
 
-function CaseStudy({ service }) {
+function CaseStudy({ service }: { service: Service }) {
   const [open, setOpen] = useState(false);
   return <article className={`case-study ${open ? "open" : ""}`} data-reveal>
     <div className="case-study-media"><img src={service.image} alt={service.imageAlt} loading="lazy"/><span className="case-stamp">PROJECT STORY</span></div>
@@ -243,17 +199,17 @@ function CaseStudy({ service }) {
   </article>;
 }
 
-function ServicePage({ service }) {
+function ServicePage({ service }: { service: Service }) {
   return <>
     <Meta title={`${service.name} | GospelCO`} description={service.intro} />
     <PageWrap>
       <main className="service-page">
         <section className="hero wrap service-hero">
-          <div className="hero-copy" data-reveal><nav className="service-breadcrumb" aria-label="Breadcrumb"><Link to="/">Home</Link><span aria-hidden="true">/</span><Link to="/#capabilities">Services</Link><span aria-hidden="true">/</span><span aria-current="page">{service.name}</span></nav><SectionLabel>GospelCO service · {service.number.split("/")[1]?.trim()}</SectionLabel><h1>{service.name} that <em>works for your brand.</em></h1><p className="lead">{service.intro}</p>
+          <div className="hero-copy" data-reveal><nav className="service-breadcrumb" aria-label="Breadcrumb"><Link to="/">Home</Link><span aria-hidden="true">/</span><Link to="/#capabilities">Services</Link><span aria-hidden="true">/</span><span aria-current="page">{service.name}</span></nav><SectionLabel>GospelCO service · {service.number.split("/")[1]?.trim()}</SectionLabel><h1>{service.name} <em>for your brand.</em></h1><p className="lead">{service.intro}</p>
             <div className="actions"><a className="btn btn-primary" href={waUrl(service.needMessage)}>Order via WhatsApp <ArrowUpRight size={14}/></a><a className="btn btn-quiet" href="#pricing">View price <ChevronRight size={14}/></a></div>
             <p className="micro-proof"><span className="purple-dot"/> Scope and deadline confirmed before production.</p>
           </div>
-          <div className="service-hero-art" data-reveal><div className="art-glow"/><div className="service-image-frame"><img src={service.image} alt={service.imageAlt} fetchpriority="high"/><span className="image-edge-label">GOSPELCO / {service.number.split("/")[0].trim()}</span></div><div className="art-caption"><span>CREATIVE SERVICE</span><span>BUILT AROUND THE BRIEF</span></div></div>
+          <div className="service-hero-art" data-reveal><div className="art-glow"/><div className="service-image-frame"><img src={service.image} alt={service.imageAlt} loading="eager"/><span className="image-edge-label">GOSPELCO / {service.number.split("/")[0].trim()}</span></div><div className="art-caption"><span>CREATIVE SERVICE</span><span>BUILT AROUND THE BRIEF</span></div></div>
         </section>
         <section className="section wrap">
           <div className="section-intro" data-reveal><SectionLabel>The offer</SectionLabel><h2>What you <em>get.</em></h2><p>{service.processDetail}</p></div>

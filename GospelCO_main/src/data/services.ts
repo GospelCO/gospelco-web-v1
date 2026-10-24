@@ -1,10 +1,32 @@
 export const WHATSAPP_NUMBER = "2349034013236"; // Kept exactly as configured in the supplied source. Replace only when GospelCO confirms the live number.
 
-export function waUrl(message = "Hi GospelCO, I want to start a project.") {
+export interface Service {
+  id: string;
+  path: string;
+  image: string;
+  imageAlt: string;
+  number: string;
+  featured?: boolean;
+  name: string;
+  short: string;
+  intro: string;
+  price: number;
+  priceLabel: string;
+  priceUnit: string;
+  deliverables: string[];
+  processDetail: string;
+  cardMessage: string;
+  needMessage: string;
+  orderMessage: string;
+  discussMessage: string;
+  faqs: [question: string, answer: string][];
+}
+
+export function waUrl(message = "Hi GospelCO, I want to start a project."): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-export const services = [
+export const services: Service[] = [
   {
     id: "flyer",
     path: "/services/graphic-design",
@@ -152,4 +174,5 @@ export const services = [
   }
 ];
 
-export const getServiceByPath = (path) => services.find((service) => service.path === path);
+export const getServiceByPath = (path: string): Service | undefined =>
+  services.find((service) => service.path === path);

@@ -22,7 +22,7 @@ No additional font family or brand palette was introduced. Existing source gradi
 
 ## WhatsApp handling
 
-`src/data/services.js` configures WhatsApp as `2349034013236`. All WhatsApp actions use this shared helper; confirm the number is the intended business line before launch.
+`src/data/services.ts` configures WhatsApp as `2349034013236`. All WhatsApp actions use this shared helper; confirm the number is the intended business line before launch.
 
 Core WhatsApp enquiry messages:
 - `Hi GospelCO, I want to start a project.`
@@ -90,12 +90,16 @@ The founder portrait now sits inside a layered frame with an offset outline, res
 
 ## Motion/performance choices
 
-- Section reveals use a 150ms transition.
-- Small cards/buttons use 150ms hover transitions.
+- The homepage hero uses a short type-on headline and staggered entrance motion.
+- Service pages share the homepage's light hero, editorial typography and motion treatment.
+- Section reveals and card interactions use restrained motion; motion is disabled for `prefers-reduced-motion`.
 - No scroll parallax is used.
 - Backdrop blur is disabled on small screens and touch devices.
-- Below-the-fold images use WebP variants and lazy loading.
-- The current cart uses browser `localStorage`; it is not a payment gateway, account system, or server-synced cart.
+- Below-the-fold images are lazy-loaded.
+
+## TypeScript
+
+The React app, service data, Vite configuration, server-rendering entry and prerender script use TypeScript. Run `npm run typecheck` for a strict type check; `npm run build` runs it before building and prerendering all routes.
 
 ## Before launch
 
@@ -114,7 +118,7 @@ The source bundle has not been deployed to Vercel by this process. This is the p
 
 ## Local build verification note
 
-The source and public-asset paths were checked in the prepared folder. Package installation/build could not be executed in the authoring environment because npm registry requests timed out, so do run `npm install` and `npm run build` locally or let Vercel install/build from the repository before production launch. Do not treat the package as already deployed or as a successful production build until that build succeeds.
+The TypeScript check and production build complete successfully, including server rendering and prerendering all seven React routes. The site has not been deployed by this process.
 
 
 ## Final brand rebuild notes

@@ -1,8 +1,8 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
-import App from "./App.jsx";
-import { services } from "./data/services.js";
+import App from "./App";
+import { services } from "./data/services";
 
 export const ROUTES = [
   {
@@ -17,7 +17,7 @@ export const ROUTES = [
   }))
 ];
 
-export function render(url) {
+export function render(url: string) {
   return renderToString(
     <StaticRouter location={url}>
       <App />
