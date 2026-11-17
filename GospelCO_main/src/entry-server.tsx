@@ -7,8 +7,8 @@ import { services } from "./data/services";
 export const ROUTES = [
   {
     path: "/",
-    title: "GospelCO | Creative Growth Systems for Businesses",
-    description: "GospelCO builds strategic brand identities, websites, video content and digital systems designed to help Nigerian businesses attract customers."
+    title: "GospelCO | Strategic Brand & Digital Growth Studio",
+    description: "GospelCO is a strategy-led studio for brand identity, websites and content—helping Nigerian businesses bring their next stage into focus."
   },
   ...services.map((service) => ({
     path: service.path,

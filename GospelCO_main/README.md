@@ -1,136 +1,49 @@
-# GospelCO React + Tailwind Vercel Build
+# GospelCO website
 
-This folder refactors the supplied GospelCO company site into a React + Vite + Tailwind v4 frontend with the homepage redesigned around a white hero, charcoal scroll-over sections, strategic case studies, core capabilities and direct WhatsApp enquiries.
+GospelCO is a React 18, TypeScript and Vite website for a strategy-led brand and digital growth studio. The homepage connects strategy, brand identity, websites and content without publishing unverified client outcomes or testimonials.
 
-## Brand system preserved
+## Architecture
 
-The source values in `assets/css/company.css` were kept:
+- `src/App.tsx` contains the homepage, shared navigation/footer and service detail pages.
+- `src/data/services.ts` is the source for service routes, prices, deliverables, FAQs and WhatsApp enquiry messages.
+- `src/entry-server.tsx` and `scripts/prerender.ts` generate the homepage and six service pages at build time.
+- `public/*.html` contains the four standalone policy and disclosure pages.
+- `public/assets/` contains the existing brand and service imagery.
 
-- Background: `#101012`
-- Panel: `#17171b`
-- Secondary panel: `#1d1b22`
-- Text: `#f5f2f7`
-- Muted text: `#b7b2bd`
-- Purple: `#8b20ee`
-- Purple highlight: `#bd55ff`
-- Accent purple: `#7700D7`
-- Limited green accent: `#07D200`
-- Font: Poppins (400, 500, 600, 700)
-- No serif fonts; all typography uses Poppins
-
-No additional font family or brand palette was introduced. Existing source gradients were reused; new sections use the same tokens.
-
-## WhatsApp handling
-
-`src/data/services.ts` configures WhatsApp as `2349034013236`. All WhatsApp actions use this shared helper; confirm the number is the intended business line before launch.
-
-Core WhatsApp enquiry messages:
-- `Hi GospelCO, I want to start a project.`
-- `Hi GospelCO, I need Flyer & Social Design.`
-- `Hi GospelCO, I need Music Cover Art.`
-- `Hi GospelCO, I need an AI Video Advert.`
-- `Hi GospelCO, tell me about your content retainer.`
-- `Hi GospelCO, I need a website.`
-- `Hi GospelCO, I need brand strategy help.`
-- `Hi GospelCO, I want to ask about the monthly retainer.`
-- `Hi GospelCO, I want to book a CONSULT session.`
-- `Hi GospelCO, let's start a project.`
-- `Hi GospelCO, I'd like to make an enquiry.`
+The homepage and service pages share the black, deep-purple, white and muted-gray palette. Motion respects `prefers-reduced-motion`; below-the-fold service imagery is lazy-loaded. Client logos and case-study claims are not shown unless approved and verifiable.
 
 ## Pages
 
-- `/` — company homepage
-- `/services/graphic-design/index.html`
-- `/services/music-cover-art/index.html`
-- `/services/ai-video-adverts/index.html`
-- `/services/video-editing/index.html`
-- `/services/web-design/index.html`
-- `/services/brand-strategy/index.html`
+- `/` — homepage
+- `/services/graphic-design`
+- `/services/music-cover-art`
+- `/services/ai-video-adverts`
+- `/services/video-editing`
+- `/services/web-design`
+- `/services/brand-strategy`
 - `/privacy-policy.html`
 - `/studio-policy.html`
 - `/content-disclaimer.html`
 - `/credits-ai-disclosure.html`
 
-The policy pages remain static HTML so their long text and legal anchors keep working; the associated source CSS/logo assets are kept under `public/assets/`.
+Service enquiries use the shared WhatsApp URL helper in `src/data/services.ts`. The configured number is `2349034013236`; confirm it before launch.
 
-## Run locally
+## Run and build
 
-1. Install Node.js (LTS) if needed.
-2. Extract this ZIP.
-3. Open the extracted folder in VS Code.
-4. Open Terminal in the project folder and run:
+Use Node.js `>=22.12.0`:
 
 ```bash
-npm install
+npm ci
 npm run dev
-```
-
-5. Open the local URL Vite prints (usually `http://localhost:5173`).
-6. Build before deploying:
-
-```bash
 npm run build
 npm run preview
 ```
 
-## Deploy to Vercel
+`npm run build` runs the TypeScript check, creates the client and server bundles, and prerenders all seven React routes. Vercel uses `npm run build` and `dist` as configured in `vercel.json`; static legal pages and assets remain regular files.
 
-Import the project folder or its GitHub repository into Vercel. Framework should be detected as Vite. Use:
-- Build command: `npm run build`
-- Output directory: `dist`
-- Install command: `npm install`
+## Launch checks
 
-The included `vercel.json` rewrites service and cart URLs to the React entry point so direct navigation and refresh work. Static policy pages and assets remain normal files.
-
-After validating the preview, connect the purchased `.com.ng` domain in Vercel and follow its current DNS instructions. Keep the Netlify deployment unchanged until the new production domain, HTTPS, and every primary link have been tested.
-
-## Why the image box feels less basic
-
-The founder portrait now sits inside a layered frame with an offset outline, restrained purple ambient light reused from the existing palette, a compact studio label and a small floating strategy chip. The portrait gently breathes on desktop and scales slightly on hover. Continuous motion is disabled on mobile, and all motion is disabled for `prefers-reduced-motion` users.
-
-## Motion/performance choices
-
-- The homepage hero uses a short type-on headline and staggered entrance motion.
-- Service pages share the homepage's light hero, editorial typography and motion treatment.
-- Section reveals and card interactions use restrained motion; motion is disabled for `prefers-reduced-motion`.
-- No scroll parallax is used.
-- Backdrop blur is disabled on small screens and touch devices.
-- Below-the-fold images are lazy-loaded.
-
-## TypeScript
-
-The React app, service data, Vite configuration, server-rendering entry and prerender script use TypeScript. Run `npm run typecheck` for a strict type check; `npm run build` runs it before building and prerendering all routes.
-
-## Before launch
-
-- Replace the placeholder WhatsApp number only after confirming the correct number; all messages are preserved in code.
-- Check all prices/packages and any turnaround claims.
-- Replace placeholder case-study imagery and copy with approved material and verifiable outcomes.
-- Confirm the founder portrait may be used as supplied.
-- Confirm all social links, legal pages and contact details.
-- Test 320px, 360px, 390px, tablet and desktop sizes.
-- Verify each cart add/update/remove and WhatsApp summary.
-- Run `npm run build` and review the Vercel preview before assigning the `.com.ng` domain.
-
-## Implementation note
-
-The source bundle has not been deployed to Vercel by this process. This is the project folder prepared for local testing and deployment by the site owner.
-
-## Local build verification note
-
-The TypeScript check and production build complete successfully, including server rendering and prerendering all seven React routes. The site has not been deployed by this process.
-
-
-## Final brand rebuild notes
-- Strict website palette: #120023, #000000, #28004D, #7700D7, white, and #B8B8B8. No green accent is used.
-- Typography: Poppins 400/500/600/700 only.
-- WhatsApp number configured as 2349034013236; review and confirm before launch.
-- Sitemap: https://gospelco.com.ng/sitemap.xml; robots.txt is included. Cart is excluded from indexing.
-- Install dependencies with `npm install`, then run `npm run build`.
-- The trust row uses service categories rather than unverifiable client counts or third-party logos.
-
-## Homepage image placeholders
-
-See [`docs/IMAGE-FILE-NAMES.md`](docs/IMAGE-FILE-NAMES.md) for the exact file names and public asset paths. The homepage includes optional placeholders for `hero_visual.png`, `company1.png`–`company3.png`, and `casestudy_image1.png`–`casestudy_image4.png`. Add files at the documented paths to replace the designed empty placeholders.
-
-The shopping cart and checkout-style UI have been removed. Service and strategy CTAs go directly to WhatsApp.
+- Confirm the WhatsApp number, service prices, social links and contact details.
+- Publish client names, logos, project images or measurable results only with permission and evidence.
+- Check the site at phone, tablet and desktop widths and test every primary CTA and service link.
+- Review the deployment preview before changing production DNS.

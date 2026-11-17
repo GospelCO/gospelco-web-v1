@@ -1,23 +1,23 @@
-# GospelCO Homepage Redesign Notes
+# GospelCO website direction
 
-The current homepage is a strategy-led creative growth agency landing page. The first fold is crisp white with purple line doodles and a right-column hero visual canvas; subsequent sections use charcoal surfaces and a layered scroll-over transition. Purple `#7700D7` is the primary accent and green `#07D200` is used sparingly. Typography uses Poppins.
+The homepage positions GospelCO as a strategy-led brand and digital growth studio. The visual system uses a dark, editorial layout with the existing purple accent and Poppins typography. The supplied `public/assets/images/hero/hero-image.webp` is used as the hero image; no placeholder hero art or client-logo strip is shown.
 
-## Current homepage sections
-1. Hero: “We Don't Just Create Visuals. We Build Systems That Bring You Customers.”
-2. Trusted by forward-thinking brands across Nigeria (company logo placeholders).
-3. Strategic case studies (four named image placeholders).
-4. Core capabilities: web engineering, video production, brand architecture.
-5. Brand values and custom strategy.
-6. Final WhatsApp conversion CTA.
+## Homepage structure
 
-## Commerce UI removal
-The shopping cart, cart icons, add-to-cart buttons, cart page and checkout-style actions have been removed. Service and strategy actions route directly to WhatsApp.
+1. Hero: “Make the next stage intentional.”
+2. Areas of work: brand strategy, visual identity, web experiences and content production.
+3. Growth system: clarify priorities, build the brand experience, and sustain purposeful content.
+4. Core capabilities with links to the existing service pages.
+5. Strategy-first approach and WhatsApp enquiry.
 
-## Image placeholders
-Use exact paths listed in `IMAGE-FILE-NAMES.md`. The new optional images are `hero_visual.png`, `company1.png`, `company2.png`, `company3.png`, `casestudy_image1.png`, `casestudy_image2.png`, `casestudy_image3.png`, and `casestudy_image4.png`. Until files are added, styled placeholder canvases remain visible without broken-image icons.
+The homepage does not present client logos, testimonials, case-study metrics or client outcomes. Add them only when the business has approved the material and can verify the claims.
 
-## Before launch
-- Verify every case-study claim and confirm permission to publish the named client examples and reported metrics.
-- Replace the company logo placeholders with authorised brand assets.
-- Confirm the WhatsApp business number.
-- Run `npm install` and `npm run build` before deployment.
+## Service pages
+
+The six service routes retain their deliverables, pricing guidance, workflow, FAQs and WhatsApp actions. Unfinished showcase-image and sample-case-study placeholders have been removed; all routes continue to be prerendered.
+
+## Accessibility and performance
+
+- Preserve keyboard focus indicators, responsive navigation and reduced-motion behavior.
+- Keep the hero portrait eager-loaded and avoid loading unrelated portfolio images on the homepage.
+- Keep below-the-fold imagery lazy-loaded and test narrow mobile layouts.

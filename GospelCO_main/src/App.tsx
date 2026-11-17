@@ -1,35 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import {
-  ArrowUpRight, BriefcaseBusiness, Compass, Crown, Handshake,
-  Menu, ShieldCheck, TrendingUp, X, Globe, Video, Palette, Sparkles, ChevronRight
+  ArrowUpRight, Menu, X, Globe, Video, Palette, Sparkles, ChevronRight
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { services, waUrl, type Service } from "./data/services";
 
 const START_MESSAGE = "Hi GospelCO, I want to book a strategy call.";
 const FINAL_MESSAGE = "Hi GospelCO, let's build a system for my business.";
 const ENQUIRY_MESSAGE = "Hi GospelCO, I'd like to make an enquiry.";
-
-type DoodleKind = "crown" | "shield" | "compass" | "briefcase" | "growth" | "trending" | "handshake";
-
-const DOODLE_ICONS: Record<DoodleKind, LucideIcon> = {
-  crown: Crown,
-  shield: ShieldCheck,
-  compass: Compass,
-  briefcase: BriefcaseBusiness,
-  growth: TrendingUp,
-  trending: TrendingUp,
-  handshake: Handshake,
-};
-
-function Doodle({ kind = "shield", className = "" }: { kind?: DoodleKind; className?: string }) {
-  const Icon = DOODLE_ICONS[kind];
-  const reducedMotion = useReducedMotion();
-  const animate = !reducedMotion && ["doodle-shield", "doodle-compass", "problem-doodle", "final-doodle"].some((name) => className.includes(name));
-  return <motion.span className={`doodle-motion ${className}`} aria-hidden="true" animate={animate ? { y: [-10, 10, -10], scale: [0.95, 1.05, 0.95] } : undefined} transition={animate ? { duration: 6, ease: "easeInOut", repeat: Infinity } : undefined}><Icon strokeWidth={1.15} aria-hidden="true" className="doodle" /></motion.span>;
-}
 
 function Meta({ title, description }: { title: string; description: string }) {
   useEffect(() => {
@@ -84,12 +62,12 @@ function Header() {
   const location = useLocation();
   useEffect(() => setOpen(false), [location.pathname]);
   return <header className="site-header redesigned-header">
-    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="/assets/images/logo/logo.svg" alt="GospelCO branding company official logo" /></Link>
+    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO" /></Link>
     <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>
       <span>{open ? "Close" : "Menu"}</span>{open ? <X size={18} /> : <Menu size={18} />}
     </button>
     <nav id="main-nav" className={open ? "open" : ""}>
-      <a href="/#case-studies" onClick={() => setOpen(false)}>Case studies</a>
+      <a href="/#case-studies" onClick={() => setOpen(false)}>Growth system</a>
       <a href="/#capabilities" onClick={() => setOpen(false)}>Capabilities</a>
       <a href="/#approach" onClick={() => setOpen(false)}>Our approach</a>
       <a className="nav-cta" href={waUrl(START_MESSAGE)}>Book a strategy call <ArrowUpRight size={14} /></a>
@@ -102,69 +80,58 @@ function SectionLabel({ children }: { children: ReactNode }) {
 }
 
 function Home() {
-  const cases = [
-    { image: "/assets/images/portfolio/eminent.jpg", link: "/services/graphic-design", title: "FMCG Brand Identity & Packaging", metric: "Eminent Bites — End-to-End Corporate Identity & Shelf-Ready Packaging Design.", body: "We developed a complete, premium visual identity system—from logo architecture to commercial packaging—to position a major Nigerian snack brand for market dominance." },
-    { image: "/assets/images/portfolio/project1.webp", link: "/services/ai-video-adverts", title: "EdTech Lead Generation Funnel", metric: "350+ Targeted Leads & 10 Student Sign-ups for a Tech Academy.", body: "Engineered a high-impact AI cinematic video trailer combined with a high-conversion registration page to drive high-ticket educational signups." },
-    { image: "/assets/images/portfolio/vickytech.jpg", link: "/services/web-design", title: "Nationwide Retail & eCommerce Setup", metric: "Multi-Channel Retail Launch — 12+ Organic Nationwide Sales Without Massive Ad Spend.", body: "Built a high-performance eCommerce website, synced it seamlessly with Google Shopping, and designed high-conversion marketing banners that captured cold customers from different states across Nigeria." },
-    { image: "/assets/images/hero/about-image.jpeg", link: "/services/web-design", title: "Personal Brand Engine", metric: "Premium Virtual Assistant Platform — High-Trust Global Positioning Portfolio.", body: "Crafted a clean, professional, premium portfolio website built to position an independent service provider for international and premium clientele." }
+  const growthSystem = [
+    { number: "01", label: "CLARIFY", title: "Start with the right question.", body: "Get clear on your offer, audience and priorities before deciding what to make.", path: "/services/brand-strategy", link: "Explore brand strategy" },
+    { number: "02", label: "BUILD", title: "Make the brand work harder.", body: "Bring identity and digital touchpoints into a consistent, useful experience.", path: "/services/web-design", link: "Explore web design" },
+    { number: "03", label: "SUSTAIN", title: "Create with a clear purpose.", body: "Plan the visual and video content that helps your business show up consistently.", path: "/services/video-editing", link: "Explore content" }
   ];
   return <div className="redesign-site">
-    <Meta title="GospelCO | Creative Growth Systems for Businesses" description="GospelCO builds strategic brand identities, websites, video content and digital systems designed to help Nigerian businesses attract customers." />
+    <Meta title="GospelCO | Strategic Brand & Digital Growth Studio" description="GospelCO is a strategy-led studio for brand identity, websites and content—helping Nigerian businesses bring their next stage into focus." />
     <Header />
     <main>
       <section className="new-hero" id="top">
-        <div className="hero-doodle-canvas" aria-hidden="true"><span className="doodle-cross">＋</span><span className="doodle-circle"/><span className="doodle-grid"/><span className="doodle-squiggle">〰</span><span className="doodle-triangle">△</span></div>
         <div className="wrap new-hero-grid">
           <div className="new-hero-copy" data-reveal>
-            <SectionLabel>Strategy · Creative · Growth</SectionLabel>
-            <h1>We Don't Just Create Visuals. <span>We Build Systems That Bring You <span className="hero-typed-word">Customers.</span></span></h1>
-            <p className="new-hero-lead">Every business has unique needs. Whether you need high-conversion eCommerce websites, Google Shopping setups, professional video editing, or cutting-edge AI video ads—we engineer bespoke digital assets that turn Nigerian browsers into paying buyers.</p>
-            <div className="actions"><a className="btn btn-primary" href="#case-studies">View Our Case Studies <ArrowUpRight size={16}/></a><a className="btn btn-outline dark-outline" href={waUrl(START_MESSAGE)}>Book a Strategy Call <ArrowUpRight size={15}/></a></div>
-            <p className="new-hero-note"><span className="green-dot"/> Built around your goals, audience and business model.</p>
+            <SectionLabel>Strategy · Brand · Digital</SectionLabel>
+            <h1>Make the next stage <span>intentional.</span></h1>
+            <p className="new-hero-lead">A strategy-led studio for businesses ready to bring their brand, website and content into sharper focus. We connect the thinking to the making—so every part has a clear job.</p>
+            <div className="actions"><a className="btn btn-primary" href={waUrl(START_MESSAGE)}>Plan your next move <ArrowUpRight size={16}/></a><a className="btn btn-outline dark-outline" href="#capabilities">Explore capabilities <ChevronRight size={15}/></a></div>
+            <p className="new-hero-note"><span className="purple-dot"/> Clear scope. Considered creative. Built around your brief.</p>
           </div>
-          <div className="new-hero-visual" data-reveal aria-label="Hero visual placeholder">
-            {/* Hero visual placeholder: hero_visual.png — add the image at public/assets/images/hero/hero_visual.png */}
-            <img src="/assets/images/hero/hero_visual.png" alt="" loading="eager" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} onError={(e)=>{e.currentTarget.style.display="none"}} />
-            <div className="visual-placeholder-content"><span className="visual-orbit orbit-one"/><span className="visual-orbit orbit-two"/><div className="visual-monogram">G<span>CO</span></div><p>STRATEGY INTO SYSTEMS</p><small>Hero image placeholder · hero_visual.png</small></div>
-            <span className="visual-corner visual-corner-tl"/><span className="visual-corner visual-corner-br"/>
+          <div className="studio-visual" data-reveal>
+            <img src="/assets/images/hero/hero-image.webp" alt="" width="736" height="736" loading="eager" />
+            <div className="studio-visual-shade" />
+            <div className="studio-visual-caption"><span>GOSPELCO / STUDIO</span><span>STRATEGY INTO SYSTEMS</span></div>
+            <div className="studio-visual-note"><span>THE WORK</span><strong>Clarity <i>→</i> Identity <i>→</i> Digital</strong></div>
           </div>
         </div>
       </section>
 
-      <section className="brand-trust" aria-labelledby="brand-trust-title">
-        <div className="wrap"><p id="brand-trust-title">Brands we've worked with across Nigeria</p><div className="brand-logo-row">
-          {/* White logos only — each tile is dark with no border. Replace the src with the final logo file when ready. */}
-          <div className="brand-logo-box"><img src="/assets/images/logo/highcee_logo.png" alt="HighCee logo" loading="lazy" onError={(e)=>{e.currentTarget.style.visibility="hidden"}}/></div>
-          <div className="brand-logo-box"><img src="/assets/images/logo/Eminent_transparent.png" alt="Eminent Bites logo" loading="lazy" onError={(e)=>{e.currentTarget.style.visibility="hidden"}}/></div>
-          <div className="brand-logo-box"><img src="/assets/images/logo/transparent.png" alt="Client brand logo" loading="lazy" onError={(e)=>{e.currentTarget.style.visibility="hidden"}}/></div>
-        </div></div>
+      <section className="brand-trust" aria-label="GospelCO areas of work">
+        <div className="wrap brand-trust-inner"><span>Brand strategy</span><i/><span>Visual identity</span><i/><span>Web experiences</span><i/><span>Content production</span></div>
       </section>
 
       <section className="new-section case-section" id="case-studies">
-        <div className="wrap"><div className="new-section-heading" data-reveal><SectionLabel>Selected projects</SectionLabel><h2>Real Work. <span>Real Numbers.</span> Real Results.</h2><p>Strategic creative work connects brand presentation with the action you want customers to take.</p></div>
-          <div className="case-grid">{cases.map((item, i)=><article className="new-case-card" key={item.image} data-reveal>
-            <div className="case-image-placeholder" data-image-filename={item.image}>
-              <img src={item.image} alt="" loading="lazy" onLoad={(e)=>{e.currentTarget.style.opacity="1"}} />
-              <span className="case-image-label">Placeholder visual</span>
-            </div>
-            <div className="new-case-copy"><span className="case-category">CASE STUDY / 0{i+1}</span><h3>{item.title}</h3><h4>{item.metric}</h4><p>{item.body}</p><div className="capability-actions"><a href={waUrl(`Hi GospelCO, I'd like to discuss a project similar to: ${item.title}.`)} className="text-link"><span className="green-dot" aria-hidden="true"/>Discuss a similar project</a><Link className="text-link" to={item.link}>Learn more <ChevronRight size={13}/></Link></div></div>
+        <div className="wrap"><div className="new-section-heading" data-reveal><SectionLabel>A more useful way to grow</SectionLabel><h2>Good work starts with <span>a connected plan.</span></h2><p>Brand, digital and content decisions work better when they are made with the same business priorities in mind.</p></div>
+          <div className="growth-grid">{growthSystem.map((item)=><article className="growth-card" key={item.number} data-reveal>
+            <div className="growth-card-top"><span>{item.number}</span><span>{item.label}</span></div><h3>{item.title}</h3><p>{item.body}</p><Link className="text-link" to={item.path}>{item.link} <ChevronRight size={14}/></Link>
           </article>)}</div>
         </div>
       </section>
 
       <section className="new-section capabilities-section" id="capabilities">
-        <div className="wrap"><div className="new-section-heading" data-reveal><SectionLabel>Core capabilities</SectionLabel><h2>Bespoke Digital Solutions, <span>Driven by Strategy.</span></h2><p>We don't force generic templates onto your business. Your goals dictate our tools. We combine human craftsmanship with AI speed to build what you actually need.</p></div>
+        <div className="wrap"><div className="new-section-heading" data-reveal><SectionLabel>Core capabilities</SectionLabel><h2>The right work for <span>what comes next.</span></h2><p>Choose a focused service or bring us a broader brief. We will confirm the scope, deliverables and next steps before work begins.</p></div>
           <div className="capability-grid">
-            <article data-reveal><span className="capability-icon"><Globe size={23}/></span><span className="capability-number">01 / DIGITAL</span><h3>High-Conversion Web Engineering</h3><ul><li>Custom Business Websites</li><li>Portfolio Development</li><li>Google Shopping Integration &amp; SEO</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss web engineering for my business.")}><span className="green-dot" aria-hidden="true"/>Discuss web engineering</a><Link className="learn-more" to="/services/web-design">Learn more <ChevronRight size={13}/></Link></div></article>
-            <article data-reveal><span className="capability-icon"><Video size={23}/></span><span className="capability-number">02 / VIDEO</span><h3>Video Production &amp; Creative Direction</h3><ul><li>High-End Post-Production</li><li>Professional Video Editing</li><li>AI Cinematic Teasers &amp; Ad Trailers</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss video production for my business.")}><span className="green-dot" aria-hidden="true"/>Discuss video production</a><Link className="learn-more" to="/services/video-editing">Learn more <ChevronRight size={13}/></Link></div></article>
-            <article data-reveal><span className="capability-icon"><Palette size={23}/></span><span className="capability-number">03 / IDENTITY</span><h3>Brand Architecture &amp; Identity</h3><ul><li>Product Packaging Design</li><li>Corporate Logo Systems</li><li>Marketing Banner Assets</li><li>Brand Guidelines</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss brand identity for my business.")}><span className="green-dot" aria-hidden="true"/>Discuss brand identity</a><Link className="learn-more" to="/services/graphic-design">Learn more <ChevronRight size={13}/></Link></div></article>
+            <article data-reveal><span className="capability-icon"><Globe size={23}/></span><span className="capability-number">01 / DIGITAL</span><h3>Websites &amp; digital foundations</h3><ul><li>Business websites and landing pages</li><li>Portfolio and service experiences</li><li>Responsive design and agreed integrations</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss a website for my business.")}><span className="purple-dot" aria-hidden="true"/>Discuss a website</a><Link className="learn-more" to="/services/web-design">Explore web design <ChevronRight size={13}/></Link></div></article>
+            <article data-reveal><span className="capability-icon"><Video size={23}/></span><span className="capability-number">02 / CONTENT</span><h3>Video &amp; content production</h3><ul><li>Short-form video editing</li><li>AI-assisted advert concepts</li><li>Structured monthly content support</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss content production for my business.")}><span className="purple-dot" aria-hidden="true"/>Discuss content</a><Link className="learn-more" to="/services/video-editing">Explore content <ChevronRight size={13}/></Link></div></article>
+            <article data-reveal><span className="capability-icon"><Palette size={23}/></span><span className="capability-number">03 / IDENTITY</span><h3>Brand identity &amp; design</h3><ul><li>Visual identity and design assets</li><li>Campaign and social graphics</li><li>Music cover art and packaging</li></ul><div className="capability-actions"><a className="text-link" href={waUrl("Hi GospelCO, I'd like to discuss brand identity and design.")}><span className="purple-dot" aria-hidden="true"/>Discuss brand design</a><Link className="learn-more" to="/services/graphic-design">Explore design <ChevronRight size={13}/></Link></div></article>
           </div>
         </div>
       </section>
 
-      <section className="new-section values-section" id="approach"><div className="wrap values-panel" data-reveal><div className="values-symbol"><Sparkles size={34}/></div><div><SectionLabel>Our approach</SectionLabel><h2>Your Business Needs Are Unique. <span>Our Strategy Reflects That.</span></h2><p>We understand that what works for a snack food company won’t work for a professional service provider. That’s why we offer custom scopes. We sit down with you, audit your current bottlenecks, and blend real video editing, web development, and digital marketing to solve your exact problems.</p><a className="btn btn-primary" href={waUrl("Hi GospelCO, I'd like to audit my current business bottlenecks and discuss a custom strategy.")}>Let's discuss your goals <ArrowUpRight size={15}/></a></div></div></section>
+      <section className="new-section values-section" id="approach"><div className="wrap values-panel" data-reveal><div className="values-symbol"><Sparkles size={34}/></div><div><SectionLabel>Our approach</SectionLabel><h2>Strategy first. <span>Then the right moves.</span></h2><p>We start by understanding your business, audience, priorities and constraints. From there, we shape a clear scope across brand, web or content—without forcing a preset package onto a brief that needs something different.</p><a className="btn btn-primary" href={waUrl("Hi GospelCO, I'd like to discuss the priorities for my business.")}>Let's discuss your goals <ArrowUpRight size={15}/></a></div></div></section>
 
-      <section className="new-final-cta"><div className="wrap" data-reveal><SectionLabel>Ready for the next stage?</SectionLabel><h2>Ready to Stop Blending In? <span>Let's Build Your System.</span></h2><p>Tell us where your business is today and what you want it to achieve next.</p><a className="btn btn-primary" href={waUrl(FINAL_MESSAGE)}>Start a WhatsApp Conversation <ArrowUpRight size={16}/></a></div></section>
+      <section className="new-final-cta"><div className="wrap" data-reveal><SectionLabel>Ready for the next stage?</SectionLabel><h2>Bring your next move <span>into focus.</span></h2><p>Tell us about your business, what needs attention and where you want to go next.</p><a className="btn btn-primary" href={waUrl(FINAL_MESSAGE)}>Start a WhatsApp conversation <ArrowUpRight size={16}/></a></div></section>
     </main>
     <Footer />
     <FloatingWhatsApp />
@@ -173,8 +140,8 @@ function Home() {
 
 function Footer() {
   return <footer className="site-footer"><div className="wrap footer-top">
-    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO branding company official logo" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
-    <div><strong>Explore</strong><a href="/#capabilities">Capabilities</a><a href="/#case-studies">Case studies</a><a href={waUrl(ENQUIRY_MESSAGE)}>Start a project</a></div>
+    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
+    <div><strong>Explore</strong><a href="/#capabilities">Capabilities</a><a href="/#case-studies">Growth system</a><a href={waUrl(ENQUIRY_MESSAGE)}>Start a project</a></div>
     <div><strong>Company</strong><a href="/#approach">Our approach</a><a href="/studio-policy.html">Studio policy</a><a href="/content-disclaimer.html">Content disclaimer</a><a href="/credits-ai-disclosure.html">Credits & AI disclosure</a><a href="/privacy-policy.html">Privacy policy</a></div>
     <div><strong>Connect</strong><a href="https://www.instagram.com/gospelco.ng/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.pinterest.com/gospelco_/" target="_blank" rel="noopener noreferrer">Pinterest</a><a href={waUrl(ENQUIRY_MESSAGE)}>WhatsApp</a></div>
   </div><div className="wrap footer-bottom"><span>© {new Date().getFullYear()} GospelCO. All rights reserved.</span><span>Designed with purpose. Built for business.</span></div></footer>;
@@ -186,17 +153,6 @@ function FloatingWhatsApp() {
 
 function PageWrap({ children }: { children: ReactNode }) {
   return <div className="redesign-page"><Header />{children}<Footer /><FloatingWhatsApp /></div>;
-}
-
-function CaseStudy({ service }: { service: Service }) {
-  const [open, setOpen] = useState(false);
-  return <article className={`case-study ${open ? "open" : ""}`} data-reveal>
-    <div className="case-study-media"><img src={service.image} alt={service.imageAlt} loading="lazy"/><span className="case-stamp">PROJECT STORY</span></div>
-    <div className="case-study-content"><div className="case-kicker">{service.name}</div><h3>Selected work &amp; <em>process.</em></h3><p className="case-summary">This section is ready for an approved project example, the brief, the creative approach and a verifiable result.</p>
-      <button className="read-toggle" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "Read less ↑" : "Read case study →"}</button>
-      {open && <div className="case-details"><p><strong>Brief:</strong> Add the client's approved brief or the problem the project set out to solve.</p><p><strong>Approach:</strong> Explain the key design or production decisions and what GospelCO delivered.</p><p><strong>Outcome:</strong> Publish only results you can verify and have permission to share. Until then, describe the deliverables rather than inventing metrics.</p><p className="fine-print">Replace the placeholder image and copy before presenting this as a completed client case study.</p></div>}
-    </div>
-  </article>;
 }
 
 function ServicePage({ service }: { service: Service }) {
@@ -215,18 +171,9 @@ function ServicePage({ service }: { service: Service }) {
           <div className="section-intro" data-reveal><SectionLabel>The offer</SectionLabel><h2>What you <em>get.</em></h2><p>{service.processDetail}</p></div>
           <div className="deliverable-grid">{service.deliverables.map((item, i) => <article key={item} data-reveal><b>{String(i+1).padStart(2,"0")}</b><span className="green-dot" aria-hidden="true"/><p>{item}</p></article>)}</div>
         </section>
-        <section className="section wrap showcase-section">
-          <div className="section-head" data-reveal><div><SectionLabel>Showcase</SectionLabel><h2>See it <em>in the wild.</em></h2></div><p>A mock-up of how this service looks in real use — on a screen, in a feed, on a shelf or in a package.</p></div>
-          <figure className="showcase-frame" data-reveal>
-            <div className="showcase-placeholder"><span className="showcase-mono">GCO</span><p>{service.name.toUpperCase()} MOCK-UP</p><small>Add an image at public/assets/images/showcase/{service.id}.jpg</small></div>
-            <img src={`/assets/images/showcase/${service.id}.jpg`} alt={`${service.name} mock-up example from GospelCO`} loading="lazy" onError={(e)=>{e.currentTarget.style.display="none"}}/>
-          </figure>
-          <figcaption className="showcase-caption"><span>{service.number}</span><span>Mock-up slot · showcase/{service.id}.jpg · 1600×900 or larger</span></figcaption>
-        </section>
         <section className="section service-price-section" id="pricing"><div className="wrap"><div className="section-head" data-reveal><div><SectionLabel>Pricing guide</SectionLabel><h2>Start with <em>{service.priceLabel}.</em></h2></div><p>Starting price shown for guidance. Final price depends on scope and confirmed deliverables.</p></div>
           <div className="price-panel" data-reveal><div><span className="price-eyebrow">{service.name}</span><h3>{service.priceLabel}<small>+ / starting point</small></h3><p>{service.priceUnit}. See the agreed quote for exact scope, timing, rights and inclusions.</p></div><div className="price-actions"><a className="btn btn-primary" href={waUrl(service.orderMessage)}>Discuss this service <ArrowUpRight size={14}/></a></div></div>
         </div></section>
-        <section className="section wrap"><div className="section-head" data-reveal><div><SectionLabel>Related work</SectionLabel><h2>Examples &amp; <em>case studies.</em></h2></div><p>Project stories stay on the page for this service, keeping the experience focused and easy to explore.</p></div><CaseStudy service={service}/></section>
         <section className="section wrap process service-process"><div data-reveal><SectionLabel>How it works</SectionLabel><h2>Clear process. <em>Better projects.</em></h2><p>The same company-wide workflow, adapted to the service and brief.</p></div><div className="steps"><article data-reveal><span>01</span><h3>Brief &amp; discovery</h3><p>{service.processDetail}</p></article><article data-reveal><span>02</span><h3>Create the first draft</h3><p>We work to the agreed deliverables and provide a draft or review point appropriate to this service.</p></article><article data-reveal><span>03</span><h3>Review &amp; revise</h3><p>Give clear feedback within the agreed revision rounds and scope.</p></article><article data-reveal><span>04</span><h3>Final handoff</h3><p>Receive the agreed final files after approval and the payment terms have been met.</p></article></div></section>
         <section className="section wrap"><div className="section-intro" data-reveal><SectionLabel>Frequently asked</SectionLabel><h2>Before we <em>start.</em></h2></div><div className="faq-list">{service.faqs.map(([question, answer]) => <details key={question} data-reveal><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
         <section className="section wrap other-services">
