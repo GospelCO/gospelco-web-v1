@@ -7,14 +7,24 @@ import { services } from "./data/services";
 export const ROUTES = [
   {
     path: "/",
-    title: "GospelCO | Strategic Brand & Digital Growth Studio",
-    description: "GospelCO is a strategy-led studio for brand identity, websites and content—helping Nigerian businesses bring their next stage into focus."
+    title: "Branding, Website Design & Social Media Content | GospelCO",
+    description: "GospelCO provides branding and brand identity design, business website design, video editing and social media content production for growing businesses."
   },
-  ...services.map((service) => ({
-    path: service.path,
-    title: service.name + " | GospelCO",
-    description: service.intro
-  }))
+  ...services.map((service) => {
+    const titles: Record<string, string> = {
+      flyer: "Graphic Design and Social Media Content | GospelCO",
+      music: "Music Cover Art and Brand Identity Design | GospelCO",
+      "ai-video": "AI-Assisted Video Editing and Social Media Content | GospelCO",
+      video: "Video Editing and Social Media Content Production | GospelCO",
+      web: "Business Website Design and Development | GospelCO",
+      strategy: "Marketing Strategy and Brand Consulting | GospelCO"
+    };
+    return {
+      path: service.path,
+      title: titles[service.id] ?? service.name + " | GospelCO",
+      description: service.intro
+    };
+  })
 ];
 
 export function render(url: string) {
