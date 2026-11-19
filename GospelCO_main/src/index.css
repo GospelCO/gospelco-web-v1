@@ -610,6 +610,18 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
 .capability-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
 .capability-grid article { min-width:0; padding:clamp(24px,3vw,38px); border:1px solid #ffffff17; border-radius:16px; background:#19191c; }
 .capability-icon { width:52px; height:52px; display:grid; place-items:center; border-radius:14px; color:#cda7ff; background:#7700D71a; border:1px solid #7700D738; margin-bottom:28px; }
+.capability-grid article { display:flex; flex-direction:column; }
+.capability-art { width:100%; aspect-ratio:16/10; margin:0 0 22px; border:1px solid #ffffff1a; border-radius:12px; overflow:hidden; background:#17131d; }
+.capability-art-web img,
+.capability-art-video img,
+.capability-art-brand img { width:100%; height:100%; object-fit:cover; }
+.capability-art-web img { object-position:center; }
+.capability-art-video { position:relative; }
+.capability-art-video img { filter:saturate(.82) contrast(.96); object-position:center 58%; }
+.video-phone { position:absolute; right:8%; bottom:-12%; width:24%; aspect-ratio:.54; border:3px solid #ece5f3; border-radius:12px 12px 4px 4px; background:linear-gradient(160deg,#2a1141,#7700D7); box-shadow:0 12px 28px #0009; display:flex; flex-direction:column; justify-content:flex-end; gap:5%; padding:10% 8%; }
+.video-phone span { position:absolute; top:8%; left:50%; transform:translateX(-50%); font-size:5px; letter-spacing:.12em; color:#fff; white-space:nowrap; }
+.video-phone i { display:block; width:100%; aspect-ratio:1; border:1px solid #ffffff55; border-radius:3px; background:#ffffff12; }
+.capability-art-brand { background:#17131d; }
 .capability-number { display:block; margin-bottom:13px; }
 .capability-grid h3 { font-size:clamp(19px,2vw,24px); font-weight:500; line-height:1.25; margin:0 0 18px; }
 .capability-grid ul { list-style:none; padding:0; margin:0 0 25px; display:grid; gap:12px; }
@@ -620,6 +632,10 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
 .values-symbol { width:78px; height:78px; display:grid; place-items:center; border-radius:20px; background:#7700D71b; color:#b77aff; border:1px solid #7700D738; }
 .values-panel h2 { max-width:850px; }
 .values-panel p { max-width:790px; color:#c4c2ca; font-size:14px; line-height:1.9; margin:22px 0 28px; }
+.studio-introduction { display:grid; grid-template-columns:minmax(180px,280px) minmax(0,1fr); gap:18px; align-items:center; max-width:790px; margin:22px 0 28px; }
+.studio-introduction p { margin:0; font-size:12px; line-height:1.75; }
+.studio-photo-slot { aspect-ratio:16/9; min-height:130px; display:grid; place-items:center; border:1px solid #ffffff20; border-radius:12px; background:linear-gradient(135deg,#1d1822,#09070c); color:#c9b8d8; font-size:9px; letter-spacing:.16em; text-transform:uppercase; overflow:hidden; }
+.studio-photo-slot span { border:1px dashed #ffffff38; border-radius:999px; padding:9px 12px; background:#09070c80; }
 .values-panel .btn,.new-final-cta .btn { border-radius:999px; min-height:48px; padding:14px 22px; }
 .new-final-cta { text-align:center; padding:clamp(90px,12vw,160px) 0; background:#fff; color:#111114; }
 .new-final-cta .wrap { max-width:900px; }
@@ -687,10 +703,11 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
    October 2026 rework — mobile header, logo scale, learn-more links,
    showcase image slots and cross-service navigation.
    ------------------------------------------------------------------ */
-.redesign-site .brand img, .redesign-page .brand img { width:152px; max-height:44px; }
+.redesign-site .brand img, .redesign-page .brand img { width:152px; max-height:44px; object-position:left center; }
 .redesign-site .site-header { background:#ffffff !important; }
 @media (max-width:767px){
   .redesign-site .brand img, .redesign-page .brand img { width:122px; max-height:38px; }
+  .redesign-page .site-footer .footer-brand img { width:122px; }
   .redesign-site .site-header, .redesign-page .site-header { min-height:68px; height:68px; }
 }
 
@@ -920,6 +937,9 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
 .redesign-page .site-footer .footer-brand img {
   width: 152px;
 }
+@media (max-width:767px) {
+  .redesign-page .site-footer .footer-brand img { width:122px; }
+}
 
 @keyframes type-reveal {
   to { clip-path: inset(0 0 0 0); }
@@ -1006,6 +1026,7 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
 }
 @media (max-width: 420px) {
   .redesign-site .brand img, .redesign-page .brand img { width:112px; max-height:34px; }
+  .redesign-page .site-footer .footer-brand img { width:112px; }
   .new-hero-grid { padding-block: 48px 42px; }
   .new-hero h1 { font-size: clamp(36px, 10vw, 43px); }
   .new-hero .actions .btn { flex: 1 1 100%; }
@@ -1245,7 +1266,9 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
   .new-hero { min-height: 0; }
   .new-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-block: 58px 46px; }
   .new-hero h1 { font-size: clamp(44px, 11vw, 60px); }
+  .new-hero h1 span { display:inline; }
   .new-hero-lead { margin: 20px 0 25px; font-size: 14px; }
+  .studio-introduction { grid-template-columns:minmax(0,1fr); }
   .studio-visual { min-height: 0; aspect-ratio: 1 / 1.02; border-radius: 17px; }
   .studio-visual-caption { inset: 27px 27px auto; font-size: 8px; }
   .studio-visual-note { right: 25px; bottom: 25px; left: 25px; padding: 15px 16px; }
