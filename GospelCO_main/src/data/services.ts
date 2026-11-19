@@ -30,8 +30,8 @@ export const services: Service[] = [
   {
     id: "flyer",
     path: "/services/graphic-design",
-    image: "/assets/images/services/flyer.jpg",
-    imageAlt: "Graphic design concept for a flyer or social media campaign",
+    image: "/assets/images/services/branding_services.png",
+    imageAlt: "Branding and visual identity design presentation with coordinated creative assets",
     number: "01 / DESIGN",
     name: "Flyer & Social Design",
     short: "Clear, premium graphics for promotions, campaigns and everyday social content.",
@@ -54,7 +54,7 @@ export const services: Service[] = [
   {
     id: "music",
     path: "/services/music-cover-art",
-    image: "/assets/images/services/branding.jpg",
+    image: "/assets/images/services/branding_services.png",
     imageAlt: "Music cover art and visual identity concept",
     number: "02 / MUSIC",
     name: "Music Cover Art",
@@ -103,8 +103,8 @@ export const services: Service[] = [
   {
     id: "video",
     path: "/services/video-editing",
-    image: "/assets/images/services/video.jpg",
-    imageAlt: "Video editing timeline for short-form social media content",
+    image: "/assets/images/services/Video_Services.png",
+    imageAlt: "Video editing and social media content production presentation",
     number: "04 / CONTENT",
     name: "Video Editing & Retainers",
     short: "Short-form edits and a structured monthly content plan for brands that publish consistently.",
@@ -127,7 +127,7 @@ export const services: Service[] = [
   {
     id: "web",
     path: "/services/web-design",
-    image: "/assets/images/services/website.jpg",
+    image: "/assets/images/services/website_services.png",
     imageAlt: "Responsive business website design shown on laptop and smartphone",
     number: "05 / WEB",
     name: "Web Design & Development",

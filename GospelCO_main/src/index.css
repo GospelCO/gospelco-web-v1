@@ -613,23 +613,15 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
 .capability-grid article { display:flex; flex-direction:column; }
 .capability-art { width:100%; aspect-ratio:16/10; margin:0 0 22px; border:1px solid #ffffff1a; border-radius:12px; overflow:hidden; background:#17131d; }
 .capability-art-web img,
-.capability-art-video img { width:100%; height:100%; object-fit:cover; }
+.capability-art-video img,
+.capability-art-brand img { width:100%; height:100%; object-fit:cover; }
 .capability-art-web img { object-position:center; }
 .capability-art-video { position:relative; }
 .capability-art-video img { filter:saturate(.82) contrast(.96); object-position:center 58%; }
 .video-phone { position:absolute; right:8%; bottom:-12%; width:24%; aspect-ratio:.54; border:3px solid #ece5f3; border-radius:12px 12px 4px 4px; background:linear-gradient(160deg,#2a1141,#7700D7); box-shadow:0 12px 28px #0009; display:flex; flex-direction:column; justify-content:flex-end; gap:5%; padding:10% 8%; }
 .video-phone span { position:absolute; top:8%; left:50%; transform:translateX(-50%); font-size:5px; letter-spacing:.12em; color:#fff; white-space:nowrap; }
 .video-phone i { display:block; width:100%; aspect-ratio:1; border:1px solid #ffffff55; border-radius:3px; background:#ffffff12; }
-.capability-art-brand { display:grid; place-items:center; background:radial-gradient(circle at 70% 20%,#7700D744,transparent 42%),linear-gradient(135deg,#1d1724,#09070c); }
-.identity-board { position:relative; width:78%; height:70%; border-radius:8px; background:#f1edf4; color:#171719; box-shadow:0 16px 30px #0008; transform:rotate(-2deg); }
-.identity-logo { position:absolute; left:8%; top:9%; font-size:clamp(20px,2.8vw,38px); font-weight:700; letter-spacing:-.08em; }
-.identity-logo span { color:#7700D7; }
-.identity-type { position:absolute; left:8%; bottom:13%; font-size:clamp(7px,.8vw,10px); letter-spacing:.24em; font-weight:700; }
-.identity-colours { position:absolute; right:8%; top:10%; display:flex; gap:4px; }
-.identity-colours i { width:clamp(8px,1vw,14px); aspect-ratio:1; border-radius:50%; background:#171719; }
-.identity-colours i:nth-child(2) { background:#7700D7; }
-.identity-colours i:nth-child(3) { background:#c9b7dd; }
-.identity-card { position:absolute; right:-7%; bottom:-11%; width:38%; aspect-ratio:1.55; display:grid; place-items:center; text-align:center; font-size:clamp(7px,.8vw,10px); line-height:1.25; border-radius:4px; background:#7700D7; color:#fff; box-shadow:0 10px 22px #0007; transform:rotate(5deg); }
+.capability-art-brand { background:#17131d; }
 .capability-number { display:block; margin-bottom:13px; }
 .capability-grid h3 { font-size:clamp(19px,2vw,24px); font-weight:500; line-height:1.25; margin:0 0 18px; }
 .capability-grid ul { list-style:none; padding:0; margin:0 0 25px; display:grid; gap:12px; }
@@ -711,10 +703,11 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
    October 2026 rework — mobile header, logo scale, learn-more links,
    showcase image slots and cross-service navigation.
    ------------------------------------------------------------------ */
-.redesign-site .brand img, .redesign-page .brand img { width:44px; height:44px; max-height:44px; object-position:center; }
+.redesign-site .brand img, .redesign-page .brand img { width:152px; max-height:44px; object-position:left center; }
 .redesign-site .site-header { background:#ffffff !important; }
 @media (max-width:767px){
-  .redesign-site .brand img, .redesign-page .brand img { width:38px; height:38px; max-height:38px; }
+  .redesign-site .brand img, .redesign-page .brand img { width:122px; max-height:38px; }
+  .redesign-page .site-footer .footer-brand img { width:122px; }
   .redesign-site .site-header, .redesign-page .site-header { min-height:68px; height:68px; }
 }
 
@@ -942,8 +935,10 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
   border-color: #7700D766;
 }
 .redesign-page .site-footer .footer-brand img {
-  width: 44px;
-  height: 44px;
+  width: 152px;
+}
+@media (max-width:767px) {
+  .redesign-page .site-footer .footer-brand img { width:122px; }
 }
 
 @keyframes type-reveal {
@@ -1030,7 +1025,8 @@ h1 em,h2 em,.cart-heading h1 em,.cart-page>h1 em,.case-study-content h3 em { fon
   .redesign-page .floating-wa .float-label { display: none; }
 }
 @media (max-width: 420px) {
-  .redesign-site .brand img, .redesign-page .brand img { width:38px; height:38px; max-height:38px; }
+  .redesign-site .brand img, .redesign-page .brand img { width:112px; max-height:34px; }
+  .redesign-page .site-footer .footer-brand img { width:112px; }
   .new-hero-grid { padding-block: 48px 42px; }
   .new-hero h1 { font-size: clamp(36px, 10vw, 43px); }
   .new-hero .actions .btn { flex: 1 1 100%; }
