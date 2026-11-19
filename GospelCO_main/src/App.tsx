@@ -62,7 +62,7 @@ function Header() {
   const location = useLocation();
   useEffect(() => setOpen(false), [location.pathname]);
   return <header className="site-header redesigned-header">
-    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="/assets/images/logo/icon.PNG" alt="GospelCO" /></Link>
+    <Link className="brand brand-wordmark" to="/" aria-label="GospelCO home"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO" /></Link>
     <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>
       <span>{open ? "Close" : "Menu"}</span>{open ? <X size={18} /> : <Menu size={18} />}
     </button>
@@ -140,7 +140,7 @@ function Home() {
 
 function Footer() {
   return <footer className="site-footer"><div className="wrap footer-top">
-    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/icon.PNG" alt="GospelCO" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
+    <div className="footer-brand-column"><Link className="brand brand-wordmark footer-brand" to="/"><img src="/assets/images/logo/logo-white.svg" alt="GospelCO" /></Link><p>Visual brand company based in Sango Ota, serving brands nationwide.</p></div>
     <div><strong>Explore</strong><a href="/#capabilities">Capabilities</a><a href="/#case-studies">Growth system</a><a href={waUrl(ENQUIRY_MESSAGE)}>Start a project</a></div>
     <div><strong>Company</strong><a href="/#approach">Our approach</a><a href="/studio-policy.html">Studio policy</a><a href="/content-disclaimer.html">Content disclaimer</a><a href="/credits-ai-disclosure.html">Credits & AI disclosure</a><a href="/privacy-policy.html">Privacy policy</a></div>
     <div><strong>Connect</strong><a href="https://www.instagram.com/gospelco.ng/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.pinterest.com/gospelco_/" target="_blank" rel="noopener noreferrer">Pinterest</a><a href={waUrl(ENQUIRY_MESSAGE)}>WhatsApp</a></div>
